@@ -1,0 +1,1 @@
+Temporal legacy insights is designed to provide Java 7 support and will maybe removed in the future.

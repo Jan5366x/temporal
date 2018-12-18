@@ -1,0 +1,28 @@
+image: novacyb/openjdk11_javafx_gradle:latest
+
+stages:
+  - test-insights
+  - test-legacy-insights
+  - test-viewer
+  - build
+  - upload
+
+test-insights:
+  stage: test-insights
+  script:
+    -gradle :temporal_insights:clean :temporal_insights:test
+  when: always
+
+test-legacy-insights:
+  stage: test-insights
+  script:
+    -gradle :temporal_legacy_insights:clean :temporal_legacy_insights:test
+  when: always
+
+test-viewer:
+  stage: test-viewer
+  script:
+    -gradle :temporal_viewer:clean :temporal_viewer:test
+  when: always
+
+# TODO setup ci file

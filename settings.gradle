@@ -1,0 +1,5 @@
+rootProject.name = 'Temporal'
+
+include 'temporal_legacy_insights'
+include 'temporal_insights'
+include 'temporal_viewer'

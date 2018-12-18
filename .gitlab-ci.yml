@@ -14,7 +14,7 @@ test-insights:
   when: always
 
 test-legacy-insights:
-  stage: test-insights
+  stage: test-legacy-insights
   script:
     -gradle :temporal_legacy_insights:clean :temporal_legacy_insights:test
   when: always

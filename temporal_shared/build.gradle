@@ -1,0 +1,32 @@
+
+dependencies {
+    testCompile group: 'org.junit.platform', name: 'junit-platform-launcher', version:project.jUnitPlatformVersion
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:project.jUnitVersion
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version:project.jUnitVersion
+}
+
+compileJava {
+    doFirst {
+        options.encoding = 'UTF-8'
+    }
+}
+
+sourceSets {
+    main.java.srcDir('src/main')
+    test.java.srcDir('src/test')
+}
+
+jar {
+    archiveName 'temporal_shared.jar'
+    from configurations.compile.collect{ zipTree( it) }
+}
+
+
+task javadocJar(type: Jar, group: 'documentation') {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+artifacts {
+    archives javadocJar
+}

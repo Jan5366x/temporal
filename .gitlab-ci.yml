@@ -1,11 +1,18 @@
 image: novacyb/openjdk11_javafx_gradle:latest
 
 stages:
+  - test-shared
   - test-insights
   - test-legacy-insights
   - test-viewer
   - build
   - upload
+
+test-shared:
+  stage: test-shared
+  script:
+    - gradle :temporal_shared:clean :temporal_shared:test
+  when: always
 
 test-insights:
   stage: test-insights

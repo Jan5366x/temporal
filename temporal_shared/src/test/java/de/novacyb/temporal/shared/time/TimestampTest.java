@@ -1,5 +1,6 @@
-package de.novacyb.temporal.shared;
+package de.novacyb.temporal.shared.time;
 
+import de.novacyb.temporal.shared.time.Timestamp;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,7 +17,6 @@ class TimestampTest {
 
         assertTrue(Math.abs(ts.get() - System.currentTimeMillis()) <= ALLOWED_OFFSET_MS);
     }
-
 
     @Test
     void setterConstructor() {
@@ -43,7 +43,6 @@ class TimestampTest {
 
         ts.set(Long.MIN_VALUE);
         assertEquals(Long.MIN_VALUE, ts.get());
-
 
         ts.set(new Timestamp(45));
         assertEquals(45,ts.get());
@@ -80,7 +79,6 @@ class TimestampTest {
 
         ts.set(100000);
         assertEquals(500, ts.getDifference(new Timestamp(99500)));
-
 
         final var tsNow = Timestamp.now(1000);
         assertTrue(Math.abs(tsNow.getDifference() - 1000) <= ALLOWED_OFFSET_MS);

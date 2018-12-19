@@ -1,4 +1,4 @@
-package de.novacyb.temporal.shared;
+package de.novacyb.temporal.shared.time;
 
 /**
  * <b>Timestamp</b><br>

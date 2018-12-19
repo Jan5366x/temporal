@@ -3,7 +3,6 @@ package de.novacyb.temporal.viewer.ui.window;
 import de.novacyb.temporal.viewer.ui.control.TimeLineView;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;

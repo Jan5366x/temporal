@@ -1,5 +1,7 @@
 package de.novacyb.temporal.viewer.ui.window;
 
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -26,5 +28,9 @@ public class MainWindow implements Initializable {
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
 
+    }
+
+    public void onClose(final ActionEvent actionEvent) {
+        Platform.exit();
     }
 }

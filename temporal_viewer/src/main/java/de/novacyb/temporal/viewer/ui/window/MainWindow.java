@@ -1,7 +1,9 @@
 package de.novacyb.temporal.viewer.ui.window;
 
+import de.novacyb.temporal.viewer.ui.control.TimeLineView;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -18,6 +20,8 @@ public class MainWindow implements Initializable {
     public AnchorPane contentPane;
     public TextField filterTextField;
 
+    private TimeLineView timeLineView = new TimeLineView();
+
     /**
      * Main Window Constructor
      */
@@ -27,7 +31,13 @@ public class MainWindow implements Initializable {
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        // do nothing
+
+        // setup timeline view
+        contentPane.getChildren().add(timeLineView);
+        AnchorPane.setTopAnchor(timeLineView,0D);
+        AnchorPane.setBottomAnchor(timeLineView,0D);
+        AnchorPane.setLeftAnchor(timeLineView,0D);
+        AnchorPane.setRightAnchor(timeLineView,0D);
     }
 
     public void onClose(final ActionEvent actionEvent) {

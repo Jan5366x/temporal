@@ -56,7 +56,7 @@ class TimestampTest {
 
     @Test
     void hasPassed() throws Exception {
-        final var ts = Timestamp.now();
+        final var ts = new Timestamp();
         Thread.sleep(ALLOWED_OFFSET_MS);
         assertTrue(ts.hasPassed());
 
@@ -65,5 +65,16 @@ class TimestampTest {
         assertTrue(ts.hasPassed());
     }
 
-    // TODO test difference
+    @Test
+    void difference() {
+        final var ts = new Timestamp(0);
+        assertEquals(-1,ts.getDifference(1));
+        assertEquals(1,ts.getDifference(-1));
+
+        ts.set(150);
+        assertEquals(50,ts.getDifference(100));
+
+        ts.set(100000);
+        assertEquals(500, ts.getDifference(new Timestamp(99500)));
+    }
 }

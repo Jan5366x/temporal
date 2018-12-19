@@ -9,7 +9,6 @@ package de.novacyb.temporal.shared;
 public class Timestamp {
     private long stamp;
 
-
     /**
      * default constructor<br>
      * Time will be set to current system time
@@ -27,7 +26,6 @@ public class Timestamp {
         stamp = timeValue;
     }
 
-
     /**
      * sets the timestamp to the current system timer<br>
      * Based on midnight, January 1, 1970 UTC.
@@ -37,16 +35,8 @@ public class Timestamp {
     }
 
     /**
-     * TODO javadoc
-     * @return
-     */
-    public static Timestamp now() {
-        return now(0);
-    }
-
-    /**
-     * TODO javadoc
-     * @param delta
+     * Creates a new timestamp with a given delta
+     * @param delta the time delta to apply to the "now" time
      * @return
      */
     public static Timestamp now(final long delta) {
@@ -128,6 +118,4 @@ public class Timestamp {
     public long getDifference(final long timeValue) {
         return stamp - timeValue;
     }
-
-
 }

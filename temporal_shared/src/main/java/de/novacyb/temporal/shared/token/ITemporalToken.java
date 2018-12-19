@@ -2,8 +2,6 @@ package de.novacyb.temporal.shared.token;
 
 /**
  * Object Token Interface
- *
- * @author Jan Schwien
  * Created on 19.12.2018.
  */
 public interface ITemporalToken {

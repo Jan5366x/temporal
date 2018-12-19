@@ -3,7 +3,6 @@ package de.novacyb.temporal.shared.time;
 /**
  * <b>Timestamp</b><br>
  * Stores a timestamp value based on milliseconds since midnight, January 1, 1970 UTC and provides related operations.
- * @author Jan Schwien
  * Created on 19.12.18.
  */
 public class Timestamp {

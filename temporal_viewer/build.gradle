@@ -1,5 +1,9 @@
 
 dependencies {
+    compile project(':temporal_shared')
+
+    compile group: 'net.sf.trove4j', name: 'trove4j', version:project.troveVersion
+    
     compile "org.openjfx:javafx-base:${project.openjfxVersion}"
     compile "org.openjfx:javafx-graphics:${project.openjfxVersion}"
     compile "org.openjfx:javafx-controls:${project.openjfxVersion}"

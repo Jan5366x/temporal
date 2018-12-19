@@ -7,7 +7,7 @@ package de.novacyb.temporal.shared;
  * Created on 19.12.18.
  */
 public class Timestamp {
-    private long stamp = 0;
+    private long stamp;
 
 
     /**

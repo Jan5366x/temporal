@@ -37,6 +37,23 @@ public class Timestamp {
     }
 
     /**
+     * TODO javadoc
+     * @return
+     */
+    public static Timestamp now() {
+        return now(0);
+    }
+
+    /**
+     * TODO javadoc
+     * @param delta
+     * @return
+     */
+    public static Timestamp now(final long delta) {
+        return new Timestamp(System.currentTimeMillis() + delta);
+    }
+
+    /**
      * sets the timestamp to the current system timer<br>
      * Based on midnight, January 1, 1970 UTC.
      * @param delta the time delta to apply to the "now" time
@@ -83,7 +100,7 @@ public class Timestamp {
      * @return <i>true</i> if reached or passed
      */
     public boolean hasPassed(final long delta){
-        return stamp + delta >= System.currentTimeMillis();
+        return stamp + delta <= System.currentTimeMillis();
     }
 
     /**

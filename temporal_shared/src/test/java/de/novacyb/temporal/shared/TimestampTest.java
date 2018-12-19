@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class TimestampTest {
 
     // offset is required to avoid flaky test results
-    private final static long ALLOWED_OFFSET_MS = 100;
+    private final static long ALLOWED_OFFSET_MS = 30;
 
     @Test
     void defaultConstructor() {
@@ -54,8 +54,16 @@ class TimestampTest {
         assertNotEquals(0, ts);
     }
 
+    @Test
+    void hasPassed() throws Exception {
+        final var ts = Timestamp.now();
+        Thread.sleep(ALLOWED_OFFSET_MS);
+        assertTrue(ts.hasPassed());
 
-    // TODO test has passed
+        ts.makeNow(100);
+        Thread.sleep(100 + ALLOWED_OFFSET_MS );
+        assertTrue(ts.hasPassed());
+    }
 
     // TODO test difference
 }

@@ -22,12 +22,12 @@ public class MainWindow implements Initializable {
      * Main Window Constructor
      */
     public MainWindow() {
-
+        // do nothing
     }
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-
+        // do nothing
     }
 
     public void onClose(final ActionEvent actionEvent) {

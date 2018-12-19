@@ -39,7 +39,7 @@ public class MainApp extends Application {
         stage.setTitle("Temporal " + getVersionString() +  " - Timing Debugger");
 
         // prepare parent
-        final Parent root = FXMLLoader.load(getClass().getResource("/ui/main_window.fxml"));
+        final Parent root = FXMLLoader.load(getClass().getResource("/ui/window/main_window.fxml"));
 
         // setup and show the scene and stage
         stage.setScene(new Scene(root, 950, 680));

@@ -21,10 +21,10 @@ public class Timestamp {
 
     /**
      * constructor with start value in milliseconds based on midnight, January 1, 1970 UTC.
-     * @param value timestamp value
+     * @param timeValue timestamp value
      */
-    public Timestamp(final long value) {
-        stamp = value;
+    public Timestamp(final long timeValue) {
+        stamp = timeValue;
     }
 
 
@@ -33,7 +33,16 @@ public class Timestamp {
      * Based on midnight, January 1, 1970 UTC.
      */
     public void makeNow() {
-        stamp = System.currentTimeMillis();
+        makeNow(0);
+    }
+
+    /**
+     * sets the timestamp to the current system timer<br>
+     * Based on midnight, January 1, 1970 UTC.
+     * @param delta the time delta to apply to the "now" time
+     */
+    public void makeNow(final long delta) {
+        stamp = System.currentTimeMillis() + delta;
     }
 
     /**
@@ -46,10 +55,10 @@ public class Timestamp {
 
     /**
      * set a timestamp value in milliseconds based on midnight, January 1, 1970 UTC.
-     * @param value timestamp value
+     * @param timeValue timestamp value
      */
-    public void set(final long value) {
-        stamp = value;
+    public void set(final long timeValue) {
+        stamp = timeValue;
     }
 
     /**
@@ -59,4 +68,49 @@ public class Timestamp {
     public void set(final Timestamp timestamp) {
         stamp = timestamp.get();
     }
+
+    /**
+     * check if a given timestamp has passed or reached the current time
+     * @return <i>true</i> if reached or passed
+     */
+    public boolean hasPassed(){
+        return hasPassed(0);
+    }
+
+    /**
+     * check if a given timestamp including a delta has passed or reached the current time
+     * @param delta time delta
+     * @return <i>true</i> if reached or passed
+     */
+    public boolean hasPassed(final long delta){
+        return stamp + delta >= System.currentTimeMillis();
+    }
+
+    /**
+     * returns the difference between the timestamp and now
+     * @return a positive or negative difference value
+     */
+    public long getDifference() {
+        return getDifference(System.currentTimeMillis());
+    }
+
+    /**
+     * returns the difference between the timestamp and an other
+     * @param timestamp the timestamp for the difference calculation
+     * @return a positive or negative difference value
+     */
+    public long getDifference(final Timestamp timestamp) {
+        return getDifference(timestamp.get());
+    }
+
+    /**
+     * returns the difference between the timestamp and an other time value
+     * @param timeValue the time value for the difference calculation
+     * @return a positive or negative difference value
+     */
+    public long getDifference(final long timeValue) {
+        return stamp - timeValue;
+    }
+
+
 }

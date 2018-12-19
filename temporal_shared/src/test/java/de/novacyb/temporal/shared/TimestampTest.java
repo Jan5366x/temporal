@@ -53,4 +53,9 @@ class TimestampTest {
         assertTrue(Math.abs(ts.get() - System.currentTimeMillis()) <= ALLOWED_OFFSET_MS);
         assertNotEquals(0, ts);
     }
+
+
+    // TODO test has passed
+
+    // TODO test difference
 }

@@ -30,9 +30,18 @@ public class TimeLine extends AnchorPane {
         line.setStroke(new Color(0.4D,0.4D,0.4D,1D));
         getChildren().add(line);
 
-        final var rect1 = new Rectangle(5D + Math.random() * 500,15D,200D,20D);
-        rect1.setFill(new Color(0.4D,0.7D,0.1D,0.95D));
-        getChildren().add(rect1);
+        final var loc = Math.random() * 600D;
+
+        final var f1 = new TimeFrame( 300D);
+        final var ft1 = new TimeSpot();
+        final var ft2 = new TimeSpot();
+
+        AnchorPane.setLeftAnchor(f1,loc);
+        AnchorPane.setLeftAnchor(ft1,loc);
+        AnchorPane.setLeftAnchor(ft2,loc + 300D);
+
+        getChildren().addAll(f1,ft1,ft2);
+
 
     }
 

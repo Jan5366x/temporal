@@ -31,14 +31,15 @@ public class TimeLine extends AnchorPane {
         getChildren().add(line);
 
         final var loc = Math.random() * 600D;
+        final var length = 50D + Math.random() * 100D;
 
-        final var f1 = new TimeFrame( 300D);
+        final var f1 = new TimeFrame( length);
         final var ft1 = new TimeSpot();
         final var ft2 = new TimeSpot();
 
         AnchorPane.setLeftAnchor(f1,loc);
         AnchorPane.setLeftAnchor(ft1,loc);
-        AnchorPane.setLeftAnchor(ft2,loc + 300D);
+        AnchorPane.setLeftAnchor(ft2,loc + length);
 
         getChildren().addAll(f1,ft1,ft2);
 

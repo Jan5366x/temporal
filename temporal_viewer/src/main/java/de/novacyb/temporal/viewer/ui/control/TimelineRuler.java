@@ -1,6 +1,11 @@
 package de.novacyb.temporal.viewer.ui.control;
 
+import javafx.geometry.Insets;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
 
 /**
  * Timeline Ruler Control
@@ -13,6 +18,7 @@ public class TimelineRuler extends AnchorPane {
         this.view = view;
 
         // TODO test code for ui experiments
-
+        setPrefHeight(25D);
+        setBackground(new Background(new BackgroundFill(Color.CORNFLOWERBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
     }
 }

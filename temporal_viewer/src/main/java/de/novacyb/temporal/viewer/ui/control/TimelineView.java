@@ -2,21 +2,25 @@ package de.novacyb.temporal.viewer.ui.control;
 
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import static javafx.scene.control.ScrollPane.ScrollBarPolicy.ALWAYS;
 
 /**
- * Time Line View Control
+ * Timeline View Control
  * Created on 19.12.2018.
  */
-public class TimeLineView extends AnchorPane {
+public class TimelineView extends AnchorPane {
 
     private final ScrollPane scrollPane = new ScrollPane();
     private final VBox content = new VBox();
 
-    public TimeLineView() {
+    /**
+     * pixel per millisecond
+     */
+    private int timeScale = 10;
+
+    public TimelineView() {
 
         // TODO remove test code
 
@@ -41,12 +45,20 @@ public class TimeLineView extends AnchorPane {
         AnchorPane.setRightAnchor(scrollPane,0D);
 
         headerBox.getChildren().addAll(
-                new TimeLineGroupHeader("Timing Token A"),
-                new TimeLineGroupHeader("Timing Token B"),
-                new TimeLineGroupHeader("Timing Token C"));
+                new TimelineGroupHeader("Timing Token A"),
+                new TimelineGroupHeader("Timing Token B"),
+                new TimelineGroupHeader("Timing Token C"));
 
-        content.getChildren().addAll(new TimeLine(this),new TimeLine(this),new TimeLine(this));
+        content.getChildren().addAll(new Timeline(this),new Timeline(this),new Timeline(this));
 
 
+    }
+
+    public int getTimeScale() {
+        return timeScale;
+    }
+
+    public void setTimeScale(int timeScale) {
+        this.timeScale = timeScale;
     }
 }

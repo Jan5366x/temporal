@@ -3,21 +3,20 @@ package de.novacyb.temporal.viewer.ui.control;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
 
 /**
- * Temporal Time Line Control
+ * Temporal Timeline Control
  * Created on 19.12.2018.
  */
-public class TimeLine extends AnchorPane {
+public class Timeline extends AnchorPane {
 
-    private final TimeLineView view;
+    private final TimelineView view;
 
     /**
      * time line control constructor
      * @param view the time line view
      */
-    public TimeLine(final TimeLineView view) {
+    public Timeline(final TimelineView view) {
         this.view = view;
 
         setPrefHeight(50D);

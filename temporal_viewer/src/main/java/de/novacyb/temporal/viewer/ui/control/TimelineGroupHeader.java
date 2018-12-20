@@ -6,14 +6,14 @@ import javafx.scene.layout.AnchorPane;
 
 
 /**
- * Time Line Group Header
+ * Timeline Group Header Control
  * Created on 20.12.2018.
  */
-public class TimeLineGroupHeader extends AnchorPane {
+public class TimelineGroupHeader extends AnchorPane {
 
     private final Label titleLabel;
 
-    public TimeLineGroupHeader(final String title) {
+    public TimelineGroupHeader(final String title) {
         // TODO test code for ui experiments
 
         titleLabel = new Label(title);

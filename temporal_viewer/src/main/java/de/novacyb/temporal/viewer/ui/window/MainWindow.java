@@ -1,6 +1,6 @@
 package de.novacyb.temporal.viewer.ui.window;
 
-import de.novacyb.temporal.viewer.ui.control.TimeLineView;
+import de.novacyb.temporal.viewer.ui.control.TimelineView;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -19,7 +19,7 @@ public class MainWindow implements Initializable {
     public AnchorPane contentPane;
     public TextField filterTextField;
 
-    private TimeLineView timeLineView = new TimeLineView();
+    private TimelineView timeLineView = new TimelineView();
 
     /**
      * Main Window Constructor

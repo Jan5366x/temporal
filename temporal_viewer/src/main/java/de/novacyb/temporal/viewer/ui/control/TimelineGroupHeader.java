@@ -27,5 +27,6 @@ public class TimelineGroupHeader extends AnchorPane {
 
         setPrefHeight(50D);
         setPrefWidth(120D);
+        setMinWidth(120D);
     }
 }

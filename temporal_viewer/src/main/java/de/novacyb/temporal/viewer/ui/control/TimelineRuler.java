@@ -20,5 +20,13 @@ public class TimelineRuler extends AnchorPane {
         // TODO test code for ui experiments
         setPrefHeight(25D);
         setBackground(new Background(new BackgroundFill(Color.CORNFLOWERBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        /*
+        final var separation = 15D;
+        for (var i = 1; i < 55; i++) {
+            final var line = new Line(i * separation,5D,i * separation,20D);
+            getChildren().add(line);
+        }
+        */
     }
 }

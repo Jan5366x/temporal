@@ -1,14 +1,12 @@
 package de.novacyb.temporal.viewer;
 
 
+import de.novacyb.temporal.shared.io.SmartProperties;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.InputStreamReader;
-import java.util.Properties;
 
 /**
  * Temporal Main Application
@@ -50,22 +48,13 @@ public class MainApp extends Application {
      * load application properties
      */
     private void loadAppProperties() {
-        try(final var input = new InputStreamReader(getClass().getModule()
-                .getResourceAsStream("/app.properties"))) {
+        final var properties = new SmartProperties("/app.properties");
 
-            final var properties = new Properties();
-            properties.load(input);
-
-            // read required values
-            appVersionMajor = Integer.parseInt(properties.getProperty("version_major"));
-            appVersionMinor = Integer.parseInt(properties.getProperty("version_minor"));
-            appVersionRevision = Integer.parseInt(properties.getProperty("version_revision"));
-            appVersionPatch = Integer.parseInt(properties.getProperty("version_patch"));
-
-        } catch (Exception e) {
-            System.err.println("Error while loading app properties!");
-            e.printStackTrace();
-        }
+        // read required values
+        appVersionMajor = properties.getInteger("version_major");
+        appVersionMinor = properties.getInteger("version_minor");
+        appVersionRevision = properties.getInteger("version_revision");
+        appVersionPatch = properties.getInteger("version_patch");
     }
 
     public static String getVersionString() {

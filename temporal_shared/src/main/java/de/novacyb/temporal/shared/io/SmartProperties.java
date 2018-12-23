@@ -50,7 +50,7 @@ public class SmartProperties {
      * @param key   the property key
      * @return the property or <i>null</i>
      */
-    public int getInteger(final String key) {
+    public int getInteger(final String key) throws NumberFormatException {
         return getInteger(key,0);
     }
 
@@ -60,12 +60,12 @@ public class SmartProperties {
      * @param defaultValue  the default value
      * @return the property or the default value
      */
-    public int getInteger(final String key, final int defaultValue) {
+    public int getInteger(final String key, final int defaultValue) throws NumberFormatException {
         try {
             return Integer.parseInt(getString(key));
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             handleParseError(e, key);
-            return defaultValue;
+            throw e;
         }
     }
 
@@ -74,7 +74,7 @@ public class SmartProperties {
      * @param key   the property key
      * @return the property or <i>null</i>
      */
-    public long getLong(final String key) {
+    public long getLong(final String key) throws NumberFormatException {
         return getLong(key,0L);
     }
 
@@ -84,12 +84,12 @@ public class SmartProperties {
      * @param defaultValue  the default value
      * @return the property or the default value
      */
-    public long getLong(final String key, final long defaultValue) {
+    public long getLong(final String key, final long defaultValue) throws NumberFormatException {
         try {
             return Long.parseLong(getString(key));
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             handleParseError(e, key);
-            return defaultValue;
+            throw e;
         }
     }
 
@@ -98,7 +98,7 @@ public class SmartProperties {
      * @param key   the property key
      * @return the property or <i>null</i>
      */
-    public float getFloat(final String key) {
+    public float getFloat(final String key) throws NumberFormatException {
         return getFloat(key,0F);
     }
 
@@ -108,12 +108,12 @@ public class SmartProperties {
      * @param defaultValue  the default value
      * @return the property or the default value
      */
-    public float getFloat(final String key, final float defaultValue) {
+    public float getFloat(final String key, final float defaultValue) throws NumberFormatException {
         try {
             return Float.parseFloat(getString(key));
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             handleParseError(e, key);
-            return defaultValue;
+            throw e;
         }
     }
 
@@ -122,7 +122,7 @@ public class SmartProperties {
      * @param key   the property key
      * @return the property or <i>null</i>
      */
-    public double getDouble(final String key) {
+    public double getDouble(final String key) throws NumberFormatException {
         return getDouble(key,0D);
     }
 
@@ -132,12 +132,12 @@ public class SmartProperties {
      * @param defaultValue  the default value
      * @return the property or the default value
      */
-    public double getDouble(final String key, final double defaultValue) {
+    public double getDouble(final String key, final double defaultValue) throws NumberFormatException {
         try {
             return Double.parseDouble(getString(key));
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             handleParseError(e, key);
-            return defaultValue;
+            throw e;
         }
     }
 
@@ -146,9 +146,7 @@ public class SmartProperties {
      * @param e     the exception
      * @param key   the requested key
      */
-    private void handleParseError(final Exception e, final String key) {
+    private void handleParseError(final NumberFormatException e, final String key) throws NumberFormatException {
         System.err.println("Can't parse property for key \"" + key +"\"!");
-        e.printStackTrace();
     }
-
 }

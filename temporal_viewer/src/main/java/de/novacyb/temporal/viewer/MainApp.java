@@ -47,7 +47,7 @@ public class MainApp extends Application {
     /**
      * load application properties
      */
-    private void loadAppProperties() {
+    private void loadAppProperties() throws NumberFormatException {
         final var properties = new SmartProperties("/app.properties");
 
         // read required values

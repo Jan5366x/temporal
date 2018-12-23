@@ -14,20 +14,22 @@ import static javafx.scene.control.ScrollPane.ScrollBarPolicy.ALWAYS;
 public class TimelineView extends AnchorPane {
     private final ScrollPane scrollPane = new ScrollPane();
     private final VBox scrollContent = new VBox();
-    private final TimelineRuler ruler = new TimelineRuler(this);
+    private final TimelineRuler ruler;
     private final VBox headerBox = new VBox();
     private final double headerSize = 120D;
 
 
     /**
-     * pixel per millisecond
+     * units per millisecond
      */
-    private int timeScale = 10;
+    private double timeScale = 10;
 
     public TimelineView() {
-        setupRuler();
         setupHeaderBox();
         setupScrollArea();
+
+        ruler = new TimelineRuler(this);
+        setupRuler();
         fillWithTestContent();
     }
 
@@ -52,14 +54,13 @@ public class TimelineView extends AnchorPane {
         // start after header
         AnchorPane.setLeftAnchor(ruler, headerSize);
 
-        getChildren().add(ruler);
+        scrollContent.getChildren().add(ruler);
     }
 
     private void setupHeaderBox() {
-        // start below ruler
-        AnchorPane.setTopAnchor(headerBox, ruler.getPrefHeight());
 
-        // stretch to bottom and left side
+        // stretch to top, bottom and left side
+        AnchorPane.setTopAnchor(headerBox, 0D);
         AnchorPane.setBottomAnchor(headerBox,0D);
         AnchorPane.setLeftAnchor(headerBox,0D);
 
@@ -73,10 +74,8 @@ public class TimelineView extends AnchorPane {
         scrollPane.setHbarPolicy(ALWAYS);
         scrollPane.setContent(scrollContent);
 
-        // start below ruler
-        AnchorPane.setTopAnchor(scrollPane,ruler.getPrefHeight());
-
-        // stretch to bottom and right side
+        // stretch to top, bottom and right side
+        AnchorPane.setTopAnchor(scrollPane,0D);
         AnchorPane.setBottomAnchor(scrollPane,0D);
         AnchorPane.setRightAnchor(scrollPane,0D);
 
@@ -87,11 +86,11 @@ public class TimelineView extends AnchorPane {
         getChildren().add(scrollPane);
     }
 
-    public int getTimeScale() {
+    public double getTimeScale() {
         return timeScale;
     }
 
-    public void setTimeScale(int timeScale) {
+    public void setTimeScale(double timeScale) {
         this.timeScale = timeScale;
     }
 }

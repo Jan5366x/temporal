@@ -33,9 +33,9 @@ public class TimeFrame extends AnchorPane {
 
         label = new Label((int) width / 10 + " ms");
         label.setMaxWidth(Double.MAX_VALUE);
-        AnchorPane.setTopAnchor(label, 35.0);
-        AnchorPane.setLeftAnchor(label, 0.0);
-        AnchorPane.setRightAnchor(label, 0.0);
+        AnchorPane.setTopAnchor(label, 35.0D);
+        AnchorPane.setLeftAnchor(label, 0.0D);
+        AnchorPane.setRightAnchor(label, 0.0D);
         label.setAlignment(Pos.CENTER);
 
         getChildren().addAll(rect1, label);

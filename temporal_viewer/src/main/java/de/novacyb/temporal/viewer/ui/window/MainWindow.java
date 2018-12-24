@@ -4,6 +4,7 @@ import de.novacyb.temporal.viewer.ui.control.TimelineView;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
@@ -18,6 +19,7 @@ public class MainWindow implements Initializable {
 
     public AnchorPane contentPane;
     public TextField filterTextField;
+    public Slider timeScaleSlider;
 
     private TimelineView timeLineView = new TimelineView();
 
@@ -37,6 +39,9 @@ public class MainWindow implements Initializable {
         AnchorPane.setBottomAnchor(timeLineView,0D);
         AnchorPane.setLeftAnchor(timeLineView,0D);
         AnchorPane.setRightAnchor(timeLineView,0D);
+
+        // bind timescale to ui
+        timeScaleSlider.valueProperty().bindBidirectional(timeLineView.timeScaleProperty());
     }
 
     public void onClose(final ActionEvent actionEvent) {

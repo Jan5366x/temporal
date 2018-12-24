@@ -1,5 +1,7 @@
 package de.novacyb.temporal.viewer.ui.control;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -22,7 +24,11 @@ public class TimelineView extends AnchorPane {
     /**
      * units per millisecond
      */
-    private double timeScale = 10;
+    private final DoubleProperty timeScale = new SimpleDoubleProperty(20D);
+    /**
+     * higehst currently displayed time in millisecond
+     */
+    private final DoubleProperty maxTime = new SimpleDoubleProperty(100D);
 
     public TimelineView() {
         setupHeaderBox();
@@ -87,10 +93,26 @@ public class TimelineView extends AnchorPane {
     }
 
     public double getTimeScale() {
+        return timeScale.get();
+    }
+
+    public DoubleProperty timeScaleProperty() {
         return timeScale;
     }
 
     public void setTimeScale(double timeScale) {
-        this.timeScale = timeScale;
+        this.timeScale.set(timeScale);
+    }
+
+    public double getMaxTime() {
+        return maxTime.get();
+    }
+
+    public DoubleProperty maxTimeProperty() {
+        return maxTime;
+    }
+
+    public void setMaxTime(double maxTime) {
+        this.maxTime.set(maxTime);
     }
 }

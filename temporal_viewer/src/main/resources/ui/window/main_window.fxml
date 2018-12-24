@@ -3,11 +3,12 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.novacyb.temporal.viewer.ui.window.MainWindow">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.novacyb.temporal.viewer.ui.window.MainWindow">
     <bottom>
         <AnchorPane prefHeight="23.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
     </bottom>
@@ -32,6 +33,7 @@
                     </menus>
                 </MenuBar>
                 <TextField fx:id="filterTextField" layoutX="8.0" layoutY="31.0" prefHeight="25.0" prefWidth="251.0" promptText="filter" />
+                <Slider fx:id="timeScaleSlider" layoutX="300.0" layoutY="31.0" max="200.0" min="10.0" value="25.0" valueChanging="true" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="38.0" />
             </children>
         </AnchorPane>
     </top>

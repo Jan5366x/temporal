@@ -17,11 +17,18 @@ public class TimelineRuler extends AnchorPane {
         setPrefHeight(25D);
 
 
-        final var separation = view.getTimeScale();
-        for (var i = 1; i < 100; i++) {
-            final var line = new Line(i * separation,5D,i * separation,20D);
+        updateTimeScale(view,view.getTimeScale());
+        view.timeScaleProperty().addListener((observable, oldValue, newValue)
+                -> updateTimeScale(view, newValue.doubleValue()));
+
+    }
+
+    private void updateTimeScale(TimelineView view, double newValue) {
+        getChildren().clear();
+        final var count = view.getMaxTime();
+        for (var i = 1; i < count; i++) {
+            final var line = new Line(i * newValue,5D,i * newValue,20D);
             getChildren().add(line);
         }
-
     }
 }

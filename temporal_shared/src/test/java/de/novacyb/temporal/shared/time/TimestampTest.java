@@ -1,6 +1,5 @@
 package de.novacyb.temporal.shared.time;
 
-import de.novacyb.temporal.shared.time.Timestamp;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

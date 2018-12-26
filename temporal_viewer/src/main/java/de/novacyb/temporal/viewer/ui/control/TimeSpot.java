@@ -8,7 +8,7 @@ import javafx.scene.shape.Rectangle;
  * Time Spot Control
  * Created on 20.12.2018.
  */
-public class TimeSpot extends AnchorPane {
+public class TimeSpot extends AnchorPane implements ITimeScale {
     private final Rectangle rect1;
 
 
@@ -20,4 +20,7 @@ public class TimeSpot extends AnchorPane {
         getChildren().add(rect1);
     }
 
+    @Override
+    public void updateTimeScale(double timeScale) {
+    }
 }

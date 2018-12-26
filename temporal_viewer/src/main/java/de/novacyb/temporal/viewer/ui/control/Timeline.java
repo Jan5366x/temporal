@@ -8,7 +8,7 @@ import javafx.scene.shape.Line;
  * Temporal Timeline Control
  * Created on 19.12.2018.
  */
-public class Timeline extends AnchorPane {
+public class Timeline extends AnchorPane implements ITimeScale {
 
     private final TimelineView view;
 
@@ -32,17 +32,22 @@ public class Timeline extends AnchorPane {
         final var loc = Math.random() * 600D;
         final var length = 50D + Math.random() * 100D;
 
-        final var f1 = new TimeFrame( length);
+        final var f1 = new TimeFrame((int) loc, (int) length);
         final var ft1 = new TimeSpot();
         final var ft2 = new TimeSpot();
-
-        AnchorPane.setLeftAnchor(f1,loc);
-        AnchorPane.setLeftAnchor(ft1,loc);
-        AnchorPane.setLeftAnchor(ft2,loc + length);
 
         getChildren().addAll(f1,ft1,ft2);
 
 
+    }
+
+    @Override
+    public void updateTimeScale(double timeScale) {
+        for (var controlNode : getChildren()) {
+            if (controlNode instanceof ITimeScale) {
+                ((ITimeScale) controlNode).updateTimeScale(timeScale);
+            }
+        }
     }
 
     // TODO implement timeline

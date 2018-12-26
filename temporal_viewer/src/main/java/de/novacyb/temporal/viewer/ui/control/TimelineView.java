@@ -37,8 +37,21 @@ public class TimelineView extends AnchorPane {
         ruler = new TimelineRuler(this);
         setupRuler();
         fillWithTestContent();
+
+        // setup time scale update
+        triggerTimeScaleUpdate(getTimeScale());
+        timeScaleProperty().addListener((observable, oldValue, newValue)
+                -> triggerTimeScaleUpdate(newValue.doubleValue()));
     }
 
+
+    private void triggerTimeScaleUpdate(final double timeScale) {
+        for (var node : scrollContent.getChildren()) {
+            if (node instanceof ITimeScale) {
+                ((ITimeScale) node).updateTimeScale(timeScale);
+            }
+        }
+    }
 
     private void fillWithTestContent() {
         headerBox.getChildren().addAll(

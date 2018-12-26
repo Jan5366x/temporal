@@ -7,7 +7,7 @@ import javafx.scene.shape.Line;
  * Timeline Ruler Control
  * Created on 20.12.2018.
  */
-public class TimelineRuler extends AnchorPane {
+public class TimelineRuler extends AnchorPane implements ITimeScale {
     private final TimelineView view;
 
     public TimelineRuler(final TimelineView view) {
@@ -16,19 +16,22 @@ public class TimelineRuler extends AnchorPane {
         // TODO test code for ui experiments
         setPrefHeight(25D);
 
-
-        updateTimeScale(view,view.getTimeScale());
-        view.timeScaleProperty().addListener((observable, oldValue, newValue)
-                -> updateTimeScale(view, newValue.doubleValue()));
-
     }
 
-    private void updateTimeScale(TimelineView view, double newValue) {
+    @Override
+    public void updateTimeScale(final double newValue) {
         getChildren().clear();
         final var count = view.getMaxTime();
         for (var i = 1; i < count; i++) {
-            final var line = new Line(i * newValue,5D,i * newValue,20D);
-            getChildren().add(line);
+
+            if (i % 10 == 0) {
+                final var line = new Line(i * newValue,5D,i * newValue,20D);
+                getChildren().add(line);
+            } else {
+                final var line = new Line(i * newValue,8D,i * newValue,18D);
+                getChildren().add(line);
+            }
+
         }
     }
 }

@@ -1,5 +1,6 @@
 package de.novacyb.temporal.viewer.ui.control;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -11,8 +12,11 @@ import javafx.scene.shape.Rectangle;
 public class TimeSpot extends AnchorPane implements ITimeScale {
     private final Rectangle rect1;
 
+    private final SimpleIntegerProperty timeStart = new SimpleIntegerProperty();
 
-    public TimeSpot() {
+    public TimeSpot(final int timeStart) {
+
+        setTimeStart(timeStart);
         // TODO test code for ui experiments
 
         rect1 = new Rectangle(0 ,10D,5D,30D);
@@ -22,5 +26,18 @@ public class TimeSpot extends AnchorPane implements ITimeScale {
 
     @Override
     public void updateTimeScale(double timeScale) {
+        setLayoutX(getTimeStart() * timeScale);
+    }
+
+    public int getTimeStart() {
+        return timeStart.get();
+    }
+
+    public SimpleIntegerProperty timeStartProperty() {
+        return timeStart;
+    }
+
+    public void setTimeStart(int timeStart) {
+        this.timeStart.set(timeStart);
     }
 }

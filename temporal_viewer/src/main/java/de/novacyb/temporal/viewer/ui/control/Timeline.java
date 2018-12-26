@@ -29,12 +29,12 @@ public class Timeline extends AnchorPane implements ITimeScale {
         line.setStroke(new Color(0.4D,0.4D,0.4D,1D));
         getChildren().add(line);
 
-        final var loc = Math.random() * 600D;
-        final var length = 50D + Math.random() * 100D;
+        final var loc = Math.random() * 60D;
+        final var length = 20D + Math.random() * 10D;
 
         final var f1 = new TimeFrame((int) loc, (int) length);
-        final var ft1 = new TimeSpot();
-        final var ft2 = new TimeSpot();
+        final var ft1 = new TimeSpot((int) loc);
+        final var ft2 = new TimeSpot((int) loc + (int) length);
 
         getChildren().addAll(f1,ft1,ft2);
 

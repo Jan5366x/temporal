@@ -72,6 +72,7 @@ public class TimeFrame extends AnchorPane implements ITimeScale {
 
     @Override
     public void updateTimeScale(final double timeScale) {
-
+        setLayoutX(getTimeStart() * timeScale);
+        setPrefWidth(getTimeWidth() * timeScale);
     }
 }

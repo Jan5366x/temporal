@@ -34,6 +34,9 @@ public class TimelineView extends AnchorPane {
         setupHeaderBox();
         setupScrollArea();
 
+
+        getStylesheets().add(getClass().getResource("/ui/style/timeline.css").toString());
+
         ruler = new TimelineRuler(this);
         setupRuler();
         fillWithTestContent();

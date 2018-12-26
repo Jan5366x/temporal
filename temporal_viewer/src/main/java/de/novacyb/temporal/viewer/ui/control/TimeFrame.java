@@ -35,7 +35,7 @@ public class TimeFrame extends AnchorPane implements ITimeScale {
 
         // setup base ui
         setId("timeFrame");
-        label = new Label(timeWidth / 10 + " ms");
+        label = new Label(timeWidth + " ms");
         label.setId("timeFrameLabel");
         label.setMaxWidth(Double.MAX_VALUE);
         AnchorPane.setTopAnchor(label, 35.0D);

@@ -4,8 +4,10 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.css.PseudoClass;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -22,6 +24,8 @@ public class TimeFrame extends AnchorPane implements ITimeScale {
     private final SimpleIntegerProperty timeWidth = new SimpleIntegerProperty();
     private final SimpleIntegerProperty timeStart = new SimpleIntegerProperty();
 
+    private Pane barNode = new Pane();
+
     public TimeFrame(final int timeStart, final int timeWidth) {
 
         setTimeStart(timeStart);
@@ -33,8 +37,7 @@ public class TimeFrame extends AnchorPane implements ITimeScale {
         active.addListener(e -> pseudoClassStateChanged(ACTIVE_PSEUDO_CLASS, active.get()));
 
 
-        // setup base ui
-        setId("timeFrame");
+        // setup label
         label = new Label(timeWidth + " ms");
         label.setId("timeFrameLabel");
         label.setMaxWidth(Double.MAX_VALUE);
@@ -43,7 +46,14 @@ public class TimeFrame extends AnchorPane implements ITimeScale {
         AnchorPane.setRightAnchor(label, 0.0D);
         label.setAlignment(Pos.CENTER);
 
-        getChildren().addAll( label);
+        // setup bar node
+        barNode.setId("timeFrame");
+        AnchorPane.setTopAnchor(barNode, 14.0D);
+        AnchorPane.setBottomAnchor(barNode, 14.0D);
+        AnchorPane.setLeftAnchor(barNode, 0.0D);
+        AnchorPane.setRightAnchor(barNode, 0.0D);
+
+        getChildren().addAll(barNode, label);
     }
 
     public int getTimeWidth() {

@@ -1,5 +1,7 @@
 package de.novacyb.temporal.shared.io;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Properties;
 
@@ -12,19 +14,38 @@ public class SmartProperties {
 
     /**
      * Smart Properties Constructor
-     * @param resource the resource path
+     * @param resource the resource path in current module
      */
     public SmartProperties(final String resource) {
-        try(final var input = new InputStreamReader(getClass().getModule()
-                .getResourceAsStream("/app.properties"))) {
-
-            properties.load(input);
-
+        try(final var input = getClass().getModule().getResourceAsStream("/app.properties")) {
+            load(input);
         } catch (Exception e) {
             System.err.println("Error while loading app properties!");
             e.printStackTrace();
         }
     }
+
+    /**
+     * Smart Properties Constructor
+     * @param inputStream the input steam
+     */
+    public SmartProperties(final InputStream inputStream) throws IOException {
+        load(inputStream);
+    }
+
+
+    /**
+     * load properties from a given input stream
+     * @param inputStream   the input stream
+     * @throws IOException will throw exception if IO access fails
+     */
+    private void load(final InputStream inputStream) throws IOException {
+        try(final var input = new InputStreamReader(inputStream)) {
+            properties.load(input);
+        }
+    }
+
+
 
     /**
      * get a string property for a given key

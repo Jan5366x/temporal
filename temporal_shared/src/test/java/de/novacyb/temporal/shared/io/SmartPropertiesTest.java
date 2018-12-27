@@ -1,7 +1,10 @@
 package de.novacyb.temporal.shared.io;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,9 +12,11 @@ class SmartPropertiesTest {
 
     private SmartProperties properties = null;
 
-    @BeforeAll
-    void setup() {
-        properties = new SmartProperties("/shared/io/SmartPropertiesTestA.properties");
+    @BeforeEach
+    void cleanSetup() throws IOException {
+        try (var input = getClass().getResourceAsStream("/shared/io/SmartPropertiesTestA.properties")) {
+            properties = new SmartProperties(input);
+        }
     }
 
     @Test

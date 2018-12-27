@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Properties;
 
 /**
- * Smart Properties
+ * Smart Properties<br>
  * Created 22.12.2018.
  */
 public class SmartProperties {
@@ -115,7 +115,8 @@ public class SmartProperties {
     }
 
     /**
-     * get a float property for a given key
+     * get a float property for a given key<br>
+     * <b>Note:</b> Expects a dot as decimal separator.
      * @param key   the property key
      * @return the property or <i>null</i>
      */
@@ -124,7 +125,8 @@ public class SmartProperties {
     }
 
     /**
-     * get a float property for a given key
+     * get a float property for a given key<br>
+     * <b>Note:</b> Expects a dot as decimal separator.
      * @param key           the property key
      * @param defaultValue  the default value
      * @return the property or the default value
@@ -139,7 +141,8 @@ public class SmartProperties {
     }
 
     /**
-     * get a double property for a given key
+     * get a double property for a given key<br>
+     * <b>Note:</b> Expects a dot as decimal separator.
      * @param key   the property key
      * @return the property or <i>null</i>
      */
@@ -148,7 +151,8 @@ public class SmartProperties {
     }
 
     /**
-     * get a double property for a given key
+     * get a double property for a given key<br>
+     * <b>Note:</b> Expects a dot as decimal separator.
      * @param key           the property key
      * @param defaultValue  the default value
      * @return the property or the default value

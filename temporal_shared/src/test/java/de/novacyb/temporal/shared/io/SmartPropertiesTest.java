@@ -1,6 +1,5 @@
 package de.novacyb.temporal.shared.io;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,33 +20,45 @@ class SmartPropertiesTest {
 
     @Test
     void getString() {
-        assertEquals("Hallo",properties.getString("testA"));
-        assertEquals("hallo",properties.getString("testB"));
-        assertEquals("HALLO WELT !",properties.getString("testC"));
+        assertEquals("Hallo", properties.getString("testA"));
+        assertEquals("hallo", properties.getString("testB"));
+        assertEquals("HALLO WELT !", properties.getString("testC"));
         assertEquals("", properties.getString("testD"));
+
+        assertNull(properties.getString("DontExistingKey"));
+        assertNull(properties.getString(""));
+        assertThrows(NullPointerException.class, () -> properties.getString(null));
     }
 
     @Test
     void getInteger() {
-        // TODO write basic test
-        throw new AssertionError("Missing Test!");
+        assertEquals(34, properties.getInteger("intA"));
+        assertEquals(-34, properties.getInteger("intB"));
+        assertThrows(NumberFormatException.class, () -> properties.getInteger("intC"));
     }
 
     @Test
     void getLong() {
-        // TODO write basic test
-        throw new AssertionError("Missing Test!");
+        assertEquals(4545L, properties.getLong("longA"));
+        assertEquals(-3443L, properties.getLong("longB"));
+        assertThrows(NumberFormatException.class, () -> properties.getLong("longC"));
     }
 
     @Test
     void getFloat() {
-        // TODO write basic test
-        throw new AssertionError("Missing Test!");
+        assertThrows(NumberFormatException.class, () -> properties.getFloat("floatA"));
+        assertEquals(34.4F, properties.getFloat("floatB"));
+        assertEquals(-35.6F, properties.getFloat("floatC"));
+        assertThrows(NumberFormatException.class, () -> properties.getFloat("floatD"));
+        assertThrows(NumberFormatException.class, () -> properties.getFloat("floatE"));
     }
 
     @Test
     void getDouble() {
-        // TODO write basic test
-        throw new AssertionError("Missing Test!");
+        assertThrows(NumberFormatException.class, () -> properties.getDouble("doubleA"));
+        assertEquals(39.4D, properties.getDouble("doubleB"));
+        assertEquals(-45.6D, properties.getDouble("doubleC"));
+        assertThrows(NumberFormatException.class, () -> properties.getDouble("doubleD"));
+        assertThrows(NumberFormatException.class, () -> properties.getDouble("doubleE"));
     }
 }

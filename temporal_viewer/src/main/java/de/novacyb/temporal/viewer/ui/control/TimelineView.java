@@ -57,11 +57,13 @@ public class TimelineView extends AnchorPane {
     }
 
     private void setupTimeCursor() {
-        timeCursorLine.startXProperty().bind(timeCursor);
-        timeCursorLine.endXProperty().bind(timeCursor);
+
+        // bind cursor including left offset
+        timeCursorLine.startXProperty().bind(timeCursor.add(leftOffset));
+        timeCursorLine.endXProperty().bind(timeCursor.add(leftOffset));
 
         // TODO scale to max size
-        timeCursorLine.setEndY(200D);
+        timeCursorLine.setEndY(350D);
 
         scrollContent.getChildren().add(timeCursorLine);
 

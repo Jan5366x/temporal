@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="207.0" prefWidth="453.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.novacyb.temporal.viewer.ui.window.ConsoleSourceWindow">
+   <children>
+      <Button fx:id="cancelButton" layoutX="361.0" layoutY="240.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Cancel" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+      <Button fx:id="okButton" layoutX="283.0" layoutY="240.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="67.0" text="Ok" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="103.0" />
+      <TextArea fx:id="commandTextArea" layoutX="15.0" layoutY="57.0" prefHeight="92.0" prefWidth="423.0" />
+      <ChoiceBox fx:id="commandModeChoiceBox" layoutX="239.0" layoutY="23.0" prefHeight="26.0" prefWidth="199.0" />
+      <Label layoutX="15.0" layoutY="28.0" text="Command">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

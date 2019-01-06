@@ -123,7 +123,7 @@ public class TimelineView extends AnchorPane {
         AnchorPane.setRightAnchor(ruler,0D);
 
         // start after header
-        AnchorPane.setLeftAnchor(ruler, headerSize);
+        AnchorPane.setLeftAnchor(ruler, 0D);
 
         scrollContent.getChildren().add(ruler);
     }

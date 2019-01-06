@@ -37,8 +37,6 @@ public class Timeline extends AnchorPane implements ITimeScale {
         final var ft2 = new TimeSpot((int) loc + (int) length);
 
         getChildren().addAll(f1,ft1,ft2);
-
-
     }
 
     @Override

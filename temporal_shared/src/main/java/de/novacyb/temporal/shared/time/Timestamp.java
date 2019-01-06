@@ -117,4 +117,9 @@ public class Timestamp {
     public long getDifference(final long timeValue) {
         return stamp - timeValue;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(stamp);
+    }
 }

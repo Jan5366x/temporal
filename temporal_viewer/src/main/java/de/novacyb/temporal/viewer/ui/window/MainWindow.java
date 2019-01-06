@@ -4,6 +4,7 @@ import de.novacyb.temporal.viewer.ui.control.TimelineView;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -20,6 +21,7 @@ public class MainWindow implements Initializable {
     public AnchorPane contentPane;
     public TextField filterTextField;
     public Slider timeScaleSlider;
+    public SeparatorMenuItem sourceContextDeleteSeparator;
 
     private TimelineView timeLineView = new TimelineView();
 
@@ -44,7 +46,22 @@ public class MainWindow implements Initializable {
         timeScaleSlider.valueProperty().bindBidirectional(timeLineView.timeScaleProperty());
     }
 
+    public void onAddLogfile(final ActionEvent actionEvent) {
+
+    }
+
+    public void onAddLiveSource(final ActionEvent actionEvent) {
+        // TODO set main stage as owner
+        new ConsoleSourceWindow().showDialog(null);
+    }
+
+    public void onDeleteSource(final ActionEvent actionEvent) {
+
+    }
+
     public void onClose(final ActionEvent actionEvent) {
         Platform.exit();
     }
+
+
 }

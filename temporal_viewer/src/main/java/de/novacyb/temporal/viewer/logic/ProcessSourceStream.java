@@ -28,7 +28,6 @@ public class ProcessSourceStream extends SourceStream {
         processBuilder.directory(workingDirectory);
         final var process = processBuilder.start();
 
-
         final var stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
         final var stdError = new BufferedReader(new InputStreamReader(process.getErrorStream()));
 

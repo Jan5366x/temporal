@@ -58,6 +58,8 @@ public class MainWindow implements Initializable {
 
         //Show open file dialog
         final var file = fileChooser.showOpenDialog(getStage());
+
+        // TODO add logfile to sources
     }
 
     public void onAddLiveSource(final ActionEvent actionEvent) {

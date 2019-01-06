@@ -1,8 +1,9 @@
 package de.novacyb.temporal.shared.time;
 
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 class TimestampTest {
 
@@ -11,8 +12,8 @@ class TimestampTest {
 
     @Test
     void defaultConstructor() {
-        final var ts = new Timestamp();
-        assertNotEquals(0, ts, "A default value (now) should be set!");
+        final Timestamp ts = new Timestamp();
+        assertNotEquals("A default value (now) should be set!", 0, ts);
 
         assertTrue(Math.abs(ts.get() - System.currentTimeMillis()) <= ALLOWED_OFFSET_MS);
     }
@@ -31,7 +32,7 @@ class TimestampTest {
 
     @Test
     void setAndGet() {
-        final var ts = new Timestamp();
+        final Timestamp ts = new Timestamp();
         ts.set(0);
         assertEquals(0, ts.get());
         ts.set(-1);
@@ -49,7 +50,7 @@ class TimestampTest {
 
     @Test
     void makeNow() {
-        final var ts = new Timestamp(0);
+        final Timestamp ts = new Timestamp(0);
         assertEquals(0, ts.get());
         ts.makeNow();
         assertTrue(Math.abs(ts.get() - System.currentTimeMillis()) <= ALLOWED_OFFSET_MS);
@@ -58,7 +59,7 @@ class TimestampTest {
 
     @Test
     void hasPassed() throws Exception {
-        final var ts = new Timestamp();
+        final Timestamp ts = new Timestamp();
         Thread.sleep(ALLOWED_OFFSET_MS);
         assertTrue(ts.hasPassed());
 
@@ -69,7 +70,7 @@ class TimestampTest {
 
     @Test
     void difference() {
-        final var ts = new Timestamp(0);
+        final Timestamp ts = new Timestamp(0);
         assertEquals(-1,ts.getDifference(1));
         assertEquals(1,ts.getDifference(-1));
 
@@ -79,7 +80,7 @@ class TimestampTest {
         ts.set(100000);
         assertEquals(500, ts.getDifference(new Timestamp(99500)));
 
-        final var tsNow = Timestamp.now(1000);
+        final Timestamp tsNow = Timestamp.now(1000);
         assertTrue(Math.abs(tsNow.getDifference() - 1000) <= ALLOWED_OFFSET_MS);
     }
 }

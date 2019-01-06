@@ -1,20 +1,22 @@
 package de.novacyb.temporal.insights;
 
 import de.novacyb.temporal.shared.EntryType;
+import de.novacyb.temporal.shared.legacy.LegacyConsumer;
 import de.novacyb.temporal.shared.token.ITemporalToken;
-
-import java.util.function.Consumer;
 
 /**
  * Temporal Insights
- *
- * @author Jan Schwien
  * Created on 19.12.2018.
  */
 public class Temporal {
     public final static String TOKEN_INDICATOR = "$$temporal$$";
     public final static String TOKEN_SEPARATOR = "|";
-    private static Consumer<String> outputLink = System.out::println;
+    private static LegacyConsumer<String> outputLink = new LegacyConsumer<String>() {
+        @Override
+        public void accept(final String value) {
+            System.out.println(value);
+        }
+    };
 
 
     /**
@@ -22,7 +24,7 @@ public class Temporal {
      * <i>(default is system out)</i>
      * @param outputConsumer the output consumer
      */
-    public static void setOutputLink(final Consumer<String> outputConsumer ) {
+    public static void setOutputLink(final LegacyConsumer<String> outputConsumer ) {
         outputLink = outputConsumer;
     }
 
@@ -35,7 +37,7 @@ public class Temporal {
     public static void report(final ITemporalToken token,final long timestamp, final EntryType type,
                               final String entryName, final String... tags) {
 
-        final var sBuilder = new StringBuilder();
+        final StringBuilder sBuilder = new StringBuilder();
 
         // add token report indicator for easier parsing
         sBuilder.append(TOKEN_INDICATOR);

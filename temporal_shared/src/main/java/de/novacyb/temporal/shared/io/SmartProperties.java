@@ -17,7 +17,7 @@ public class SmartProperties {
      * @param resource the resource path in current module
      */
     public SmartProperties(final String resource) {
-        try(final var input = getClass().getModule().getResourceAsStream("/app.properties")) {
+        try(final InputStream input = getClass().getResourceAsStream("/app.properties")) {
             load(input);
         } catch (Exception e) {
             System.err.println("Error while loading app properties!");
@@ -40,7 +40,7 @@ public class SmartProperties {
      * @throws IOException will throw exception if IO access fails
      */
     private void load(final InputStream inputStream) throws IOException {
-        try(final var input = new InputStreamReader(inputStream)) {
+        try(final InputStreamReader input = new InputStreamReader(inputStream)) {
             properties.load(input);
         }
     }

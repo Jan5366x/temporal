@@ -21,8 +21,8 @@ public class TimelineView extends AnchorPane {
     private final AnchorPane scrollContent = new AnchorPane();
     private final Line timeCursorLine = new Line();
     private final TimelineRuler ruler;
-
-    private final double headerSize = 120D;
+    private double topOffset = 0D;
+    private final double leftOffset = 120D;
 
     /**
      * units per millisecond
@@ -100,8 +100,10 @@ public class TimelineView extends AnchorPane {
         final var timeline = new Timeline(this);
 
         // set spacing
-        timelineHeader.setLayoutY(timelineHeader.getPrefHeight() * timelineCount);
-        timeline.setLayoutY(timeline.getPrefHeight() * timelineCount);
+        timelineHeader.setLayoutY(topOffset + (timelineHeader.getPrefHeight() * timelineCount));
+
+        timeline.setLayoutY(topOffset + (timeline.getPrefHeight() * timelineCount));
+        timeline.setLayoutX(leftOffset);
 
         scrollContent.getChildren().add(timelineHeader);
         scrollContent.getChildren().add(timeline);
@@ -118,9 +120,12 @@ public class TimelineView extends AnchorPane {
         AnchorPane.setRightAnchor(ruler,0D);
 
         // start after header
-        AnchorPane.setLeftAnchor(ruler, 0D);
+        AnchorPane.setLeftAnchor(ruler, leftOffset);
 
         scrollContent.getChildren().add(ruler);
+
+        // add to top offset
+        topOffset += ruler.getPrefHeight();
     }
 
     private void setupScrollArea() {

@@ -9,6 +9,8 @@ dependencies {
     compile "org.openjfx:javafx-controls:${project.openjfxVersion}"
     compile "org.openjfx:javafx-fxml:${project.openjfxVersion}"
 
+    compile group: 'org.reactfx', name: 'reactfx', version:project.reactfxVersion
+
     testCompile group: 'org.junit.platform', name: 'junit-platform-launcher', version:project.jUnitPlatformVersion
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:project.jUnitVersion
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version:project.jUnitVersion

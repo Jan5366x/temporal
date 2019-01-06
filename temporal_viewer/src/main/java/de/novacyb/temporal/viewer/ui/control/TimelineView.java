@@ -5,6 +5,10 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Line;
+import org.reactfx.util.FxTimer;
+
+import java.time.Duration;
 
 import static javafx.scene.control.ScrollPane.ScrollBarPolicy.ALWAYS;
 
@@ -15,25 +19,33 @@ import static javafx.scene.control.ScrollPane.ScrollBarPolicy.ALWAYS;
  */
 public class TimelineView extends AnchorPane {
     private final ScrollPane scrollPane = new ScrollPane();
-    private final VBox scrollContent = new VBox();
-    private final TimelineRuler ruler;
+    private final AnchorPane scrollContent = new AnchorPane();
     private final VBox headerBox = new VBox();
-    private final double headerSize = 120D;
+    private final Line timeCursorLine = new Line();
+    private final TimelineRuler ruler;
 
+    private final double headerSize = 120D;
 
     /**
      * units per millisecond
      */
     private final DoubleProperty timeScale = new SimpleDoubleProperty(20D);
+
     /**
-     * higehst currently displayed time in millisecond
+     * highest currently displayed time in millisecond
      */
     private final DoubleProperty maxTime = new SimpleDoubleProperty(100D);
+
+    /**
+     * the time cursor marks the current time position
+     */
+    private final DoubleProperty timeCursor = new SimpleDoubleProperty(0D);
+
 
     public TimelineView() {
         setupHeaderBox();
         setupScrollArea();
-
+        setupTimeCursor();
 
         getStylesheets().add(getClass().getResource("/ui/style/timeline.css").toString());
 
@@ -45,6 +57,24 @@ public class TimelineView extends AnchorPane {
         triggerTimeScaleUpdate(getTimeScale());
         timeScaleProperty().addListener((observable, oldValue, newValue)
                 -> triggerTimeScaleUpdate(newValue.doubleValue()));
+    }
+
+    private void setupTimeCursor() {
+        timeCursorLine.startXProperty().bind(timeCursor);
+        timeCursorLine.endXProperty().bind(timeCursor);
+
+        // TODO scale to max size
+        timeCursorLine.setEndY(200D);
+
+        scrollContent.getChildren().add(timeCursorLine);
+
+
+        // TODO placeholder
+        FxTimer.runPeriodically(
+                Duration.ofMillis(10),
+                () -> timeCursor.set(timeCursor.getValue() + 0.1D));
+
+
     }
 
 
@@ -62,7 +92,26 @@ public class TimelineView extends AnchorPane {
                 new TimelineGroupHeader("Timing Token B"),
                 new TimelineGroupHeader("Timing Token C"));
 
-        scrollContent.getChildren().addAll(new Timeline(this),new Timeline(this),new Timeline(this));
+        addTimeLine();
+        addTimeLine();
+        addTimeLine();
+        addTimeLine();
+        addTimeLine();
+        addTimeLine();
+    }
+
+
+    // TODO placeholder
+    int timelineCount = 0;
+    public void addTimeLine() {
+        final var timeline = new Timeline(this);
+
+        // set spacing
+        timeline.setLayoutY(timeline.getPrefHeight() * timelineCount);
+
+        scrollContent.getChildren().add(timeline);
+
+        timelineCount++;
     }
 
     private void setupRuler() {

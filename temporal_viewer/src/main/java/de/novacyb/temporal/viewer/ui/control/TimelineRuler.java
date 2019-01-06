@@ -23,7 +23,6 @@ public class TimelineRuler extends AnchorPane implements ITimeScale {
         getChildren().clear();
         final var count = view.getMaxTime();
         for (var i = 0; i < count; i++) {
-
             if (i % 10 == 0) {
                 final var line = new Line(i * newValue,5D,i * newValue,20D);
                 getChildren().add(line);
@@ -31,7 +30,6 @@ public class TimelineRuler extends AnchorPane implements ITimeScale {
                 final var line = new Line(i * newValue,8D,i * newValue,18D);
                 getChildren().add(line);
             }
-
         }
     }
 }

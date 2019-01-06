@@ -4,7 +4,6 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import org.reactfx.util.FxTimer;
 
@@ -20,7 +19,6 @@ import static javafx.scene.control.ScrollPane.ScrollBarPolicy.ALWAYS;
 public class TimelineView extends AnchorPane {
     private final ScrollPane scrollPane = new ScrollPane();
     private final AnchorPane scrollContent = new AnchorPane();
-    private final VBox headerBox = new VBox();
     private final Line timeCursorLine = new Line();
     private final TimelineRuler ruler;
 
@@ -43,7 +41,6 @@ public class TimelineView extends AnchorPane {
 
 
     public TimelineView() {
-        setupHeaderBox();
         setupScrollArea();
         setupTimeCursor();
 
@@ -87,11 +84,6 @@ public class TimelineView extends AnchorPane {
     }
 
     private void fillWithTestContent() {
-        headerBox.getChildren().addAll(
-                new TimelineGroupHeader("Timing Token A"),
-                new TimelineGroupHeader("Timing Token B"),
-                new TimelineGroupHeader("Timing Token C"));
-
         addTimeLine();
         addTimeLine();
         addTimeLine();
@@ -104,11 +96,14 @@ public class TimelineView extends AnchorPane {
     // TODO placeholder
     int timelineCount = 0;
     public void addTimeLine() {
+        final var timelineHeader = new TimelineGroupHeader("Timing Token " + timelineCount);
         final var timeline = new Timeline(this);
 
         // set spacing
+        timelineHeader.setLayoutY(timelineHeader.getPrefHeight() * timelineCount);
         timeline.setLayoutY(timeline.getPrefHeight() * timelineCount);
 
+        scrollContent.getChildren().add(timelineHeader);
         scrollContent.getChildren().add(timeline);
 
         timelineCount++;
@@ -128,18 +123,6 @@ public class TimelineView extends AnchorPane {
         scrollContent.getChildren().add(ruler);
     }
 
-    private void setupHeaderBox() {
-
-        // stretch to top, bottom and left side
-        AnchorPane.setTopAnchor(headerBox, 0D);
-        AnchorPane.setBottomAnchor(headerBox,0D);
-        AnchorPane.setLeftAnchor(headerBox,0D);
-
-        headerBox.setPrefWidth(headerSize);
-
-        getChildren().add(headerBox);
-    }
-
     private void setupScrollArea() {
         scrollPane.setVbarPolicy(ALWAYS);
         scrollPane.setHbarPolicy(ALWAYS);
@@ -151,7 +134,7 @@ public class TimelineView extends AnchorPane {
         AnchorPane.setRightAnchor(scrollPane,0D);
 
         // start right to the header
-        AnchorPane.setLeftAnchor(scrollPane, headerSize);
+        AnchorPane.setLeftAnchor(scrollPane, 0D);
 
 
         getChildren().add(scrollPane);

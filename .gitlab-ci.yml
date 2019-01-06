@@ -3,7 +3,6 @@ image: novacyb/openjdk11_javafx_gradle:latest
 stages:
   - test-shared
   - test-insights
-  - test-legacy-insights
   - test-viewer
   - build
   - upload
@@ -18,12 +17,6 @@ test-insights:
   stage: test-insights
   script:
     - gradle :temporal_insights:clean :temporal_insights:test
-  when: always
-
-test-legacy-insights:
-  stage: test-legacy-insights
-  script:
-    - gradle :temporal_legacy_insights:clean :temporal_legacy_insights:test
   when: always
 
 test-viewer:

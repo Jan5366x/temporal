@@ -1,4 +1,7 @@
 
+sourceCompatibility = 11
+targetCompatibility = 11
+
 dependencies {
     compile group: 'net.sf.trove4j', name: 'trove4j', version:project.troveVersion
     

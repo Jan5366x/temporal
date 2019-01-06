@@ -1,3 +1,5 @@
+sourceCompatibility = 11
+targetCompatibility = 11
 
 dependencies {
     compile project(':temporal_shared')

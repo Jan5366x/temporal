@@ -28,9 +28,6 @@ allprojects {
         jUnitPlatformVersion    = '1.3.2'
     }
 
-    sourceCompatibility = 11
-    targetCompatibility = 11
-
     configurations.all {
         // Check for changing dependency updates every build
         resolutionStrategy.cacheChangingModulesFor 0, 'seconds'

@@ -8,6 +8,8 @@ import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -47,12 +49,19 @@ public class MainWindow implements Initializable {
     }
 
     public void onAddLogfile(final ActionEvent actionEvent) {
+        final var fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose Logfile");
+        fileChooser.getExtensionFilters()
+                .addAll(new FileChooser.ExtensionFilter("All Files", "*.*"),
+                        new FileChooser.ExtensionFilter("Text Files", "*.txt"),
+                        new FileChooser.ExtensionFilter("Log Files", "*.log"));
 
+        //Show open file dialog
+        final var file = fileChooser.showOpenDialog(getStage());
     }
 
     public void onAddLiveSource(final ActionEvent actionEvent) {
-        // TODO set main stage as owner
-        new ConsoleSourceWindow().showDialog(null);
+        new ConsoleSourceWindow().showDialog(getStage());
     }
 
     public void onDeleteSource(final ActionEvent actionEvent) {
@@ -61,6 +70,10 @@ public class MainWindow implements Initializable {
 
     public void onClose(final ActionEvent actionEvent) {
         Platform.exit();
+    }
+
+    public Stage getStage() {
+        return (Stage) contentPane.getScene().getWindow();
     }
 
 

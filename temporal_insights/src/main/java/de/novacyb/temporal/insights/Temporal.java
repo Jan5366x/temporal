@@ -22,6 +22,19 @@ public class Temporal {
 
     private Consumer<String> outputLink = System.out::println;
 
+
+    /**
+     * report a entry
+     * @param identifierString  report token string to identify a unique object
+     * @param type              the type of the report
+     * @param entryName         the report entry name
+     * @param tags              search and filter tags
+     */
+    public static void report(final String identifierString, final EntryType type, final String entryName,
+                              final String... tags) {
+        report(() -> identifierString, type, entryName, tags);
+    }
+
     /**
      * report a entry
      * @param identifierToken   report token to identify a unique object
@@ -33,6 +46,19 @@ public class Temporal {
                           final String... tags) {
 
         INSTANCE.addReport(identifierToken, type, entryName, tags);
+    }
+
+    /** report a entry
+     * @param identifierString  report token string to identify a unique object
+     * @param timestamp         the timestamp (The difference, measured in milliseconds, between the current time
+     *                          and midnight, January 1, 1970 UTC.)
+     * @param type              the type of the report
+     * @param entryName         the report entry name
+     * @param tags              search and filter tags
+     */
+    public static void report(final String identifierString,final long timestamp, final EntryType type,
+                              final String entryName, final String... tags) {
+        report(() -> identifierString, timestamp, type, entryName, tags);
     }
 
     /** report a entry

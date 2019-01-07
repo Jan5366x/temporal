@@ -70,7 +70,7 @@ subprojects {
 
         // define reports
         reports {
-            junitXml.enabled = true
+            junitXml.enabled = false
             html.enabled = true
         }
 

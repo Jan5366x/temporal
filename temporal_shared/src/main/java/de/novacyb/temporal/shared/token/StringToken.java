@@ -5,11 +5,10 @@ package de.novacyb.temporal.shared.token;
  * String tokens can be used if the developer want to define the token without a proper token source object
  * Created on 19.12.2018.
  */
-public class StringToken extends AbstractTemporalToken {
+public class StringToken implements ITemporalToken {
     private final String strToken;
 
-    public StringToken(final String strToken, final String... tags) {
-        super( tags);
+    public StringToken(final String strToken) {
         this.strToken = strToken;
     }
 

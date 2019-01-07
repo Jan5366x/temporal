@@ -10,10 +10,4 @@ public interface ITemporalToken {
      * @return TODO javadoc
      */
     String getTokenIdentifier();
-
-    /**
-     * filter tags for sorting and search purpose (can be empty)
-     * @return TODO javadoc
-     */
-    String[] getTags();
 }

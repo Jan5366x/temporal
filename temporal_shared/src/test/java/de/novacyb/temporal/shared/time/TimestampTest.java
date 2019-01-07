@@ -5,13 +5,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-class TimestampTest {
+public class TimestampTest {
 
     // offset is required to avoid flaky test results
     private final static long ALLOWED_OFFSET_MS = 30;
 
     @Test
-    void defaultConstructor() {
+    public void defaultConstructor() {
         final Timestamp ts = new Timestamp();
         assertNotEquals("A default value (now) should be set!", 0, ts);
 
@@ -19,7 +19,7 @@ class TimestampTest {
     }
 
     @Test
-    void setterConstructor() {
+    public void setterConstructor() {
         assertEquals(0, new Timestamp(0).get());
         assertEquals(1, new Timestamp(1).get());
         assertEquals(23423432, new Timestamp(23423432).get());
@@ -31,7 +31,7 @@ class TimestampTest {
     }
 
     @Test
-    void setAndGet() {
+    public void setAndGet() {
         final Timestamp ts = new Timestamp();
         ts.set(0);
         assertEquals(0, ts.get());
@@ -49,7 +49,7 @@ class TimestampTest {
     }
 
     @Test
-    void makeNow() {
+    public void makeNow() {
         final Timestamp ts = new Timestamp(0);
         assertEquals(0, ts.get());
         ts.makeNow();
@@ -58,7 +58,7 @@ class TimestampTest {
     }
 
     @Test
-    void hasPassed() throws Exception {
+    public void hasPassed() throws Exception {
         final Timestamp ts = new Timestamp();
         Thread.sleep(ALLOWED_OFFSET_MS);
         assertTrue(ts.hasPassed());
@@ -69,7 +69,7 @@ class TimestampTest {
     }
 
     @Test
-    void difference() {
+    public void difference() {
         final Timestamp ts = new Timestamp(0);
         assertEquals(-1,ts.getDifference(1));
         assertEquals(1,ts.getDifference(-1));

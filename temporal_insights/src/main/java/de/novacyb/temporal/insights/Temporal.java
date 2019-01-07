@@ -91,9 +91,11 @@ public class Temporal {
 
         // add the entry name
         sBuilder.append(entryName);
-        sBuilder.append(TOKEN_SEPARATOR);
 
-        // add tags
+        // add tags and related separators
+        if (tags.length > 0)
+            sBuilder.append(TOKEN_SEPARATOR);
+
         for (int i = 0; i < tags.length; i++) {
             sBuilder.append(tags[i]);
             if (i != tags.length - 1) {

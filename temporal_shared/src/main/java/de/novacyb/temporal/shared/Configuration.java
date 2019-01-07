@@ -2,8 +2,6 @@ package de.novacyb.temporal.shared;
 
 /**
  * Configuration
- *
- * @author Jan Schwien
  * Created on 07.01.19.
  */
 public class Configuration {

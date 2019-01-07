@@ -5,6 +5,9 @@ _(temporary codename)_
 
 More information will follow soon.
 
+## Java 7 Legacy Edition
+Gradle requires the environment variable `JDK7_HOME` to work properly for this branch!
+
 OpenJDK:<br>
 https://openjdk.java.net
 

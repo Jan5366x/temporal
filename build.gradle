@@ -28,11 +28,6 @@ allprojects {
         jUnitPlatformVersion    = '1.3.2'
     }
 
-    configurations.all {
-        // Check for changing dependency updates every build
-        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
-    }
-
     repositories {
         mavenCentral()
     }
@@ -75,7 +70,7 @@ subprojects {
 
         // define reports
         reports {
-            junitXml.enabled = true
+            junitXml.enabled = false
             html.enabled = true
         }
 

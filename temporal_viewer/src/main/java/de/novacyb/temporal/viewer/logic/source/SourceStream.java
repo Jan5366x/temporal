@@ -1,4 +1,4 @@
-package de.novacyb.temporal.viewer.logic;
+package de.novacyb.temporal.viewer.logic.source;
 
 /**
  * Source Stream

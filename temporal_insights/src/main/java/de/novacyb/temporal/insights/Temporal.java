@@ -14,8 +14,8 @@ import java.util.function.Consumer;
 public class Temporal {
     public final static String TOKEN_INDICATOR = "$$temporal$$";
     public final static String TOKEN_SEPARATOR = "|";
-    private static Consumer<String> outputLink = System.out::println;
 
+    private static Consumer<String> outputLink = System.out::println;
 
     /**
      * can be used to use a custom logger as output<br>
@@ -26,13 +26,29 @@ public class Temporal {
         outputLink = outputConsumer;
     }
 
-    public static void report(final ITemporalToken token, final EntryType type, final String entryName,
+    /**
+     * report a entry
+     * @param identifierToken   report token to identify a unique object
+     * @param type              the type of the report
+     * @param entryName         the report entry name
+     * @param tags              search and filter tags
+     */
+    public static void report(final ITemporalToken identifierToken, final EntryType type, final String entryName,
                               final String... tags) {
 
-        report(token, System.currentTimeMillis() , type, entryName, tags);
+        report(identifierToken, System.currentTimeMillis() , type, entryName, tags);
     }
 
-    public static void report(final ITemporalToken token,final long timestamp, final EntryType type,
+    /**
+     * report a entry
+     * @param identifierToken   report token to identify a unique object
+     * @param timestamp         the timestamp (The difference, measured in milliseconds, between the current time
+     *                          and midnight, January 1, 1970 UTC.)
+     * @param type              the type of the report
+     * @param entryName         the report entry name
+     * @param tags              search and filter tags
+     */
+    public static void report(final ITemporalToken identifierToken,final long timestamp, final EntryType type,
                               final String entryName, final String... tags) {
 
         final var sBuilder = new StringBuilder();
@@ -42,7 +58,7 @@ public class Temporal {
         sBuilder.append(TOKEN_SEPARATOR);
 
         // add token identifier
-        sBuilder.append(token.getTokenIdentifier());
+        sBuilder.append(identifierToken.getTokenIdentifier());
         sBuilder.append(TOKEN_SEPARATOR);
 
         // add the timestamp

@@ -8,12 +8,13 @@ More information will follow soon.
 ## Java 7 Legacy Edition
 Gradle requires the variable `JDK7_HOME` in `gradle.properties` to be set!
 
-You can create `gradle.properties` in project root directory or `gradle.properties` in `GRADLE_USER_HOME` directory.
+You can create/use `gradle.properties` in project root directory or `gradle.properties` in `GRADLE_USER_HOME` directory.
 
-Add whatever your path is to the JDK, e.g. for Mac
-```
-JDK7_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home
-```
+**Add whatever your path is to the JDK as example:**<br>
+`JDK7_HOME=C:\Program Files\Java\jdk1.7.0_80`<br>
+`JDK7_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home`
+
+
 
 OpenJDK:<br>
 https://openjdk.java.net

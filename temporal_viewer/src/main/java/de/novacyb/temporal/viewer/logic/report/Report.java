@@ -15,6 +15,12 @@ public class Report {
     public Report(final String identifier, final String name, final EntryType type, final String... tags)
             throws NullPointerException, IllegalArgumentException {
 
+        if (identifier == null || name == null || type == null)
+            throw new NullPointerException("Input can't be null!");
+
+        if (identifier.trim().isEmpty() || name.trim().isEmpty())
+            throw new IllegalArgumentException("Input can't be empty!");
+
         this.identifier = identifier;
         this.name = name;
         this.type = type;

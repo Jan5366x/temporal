@@ -8,6 +8,10 @@ package de.novacyb.temporal.shared.token;
 public class StringToken implements ITemporalToken {
     private final String strToken;
 
+    /**
+     * String Token
+     * @param strToken
+     */
     public StringToken(final String strToken) {
         this.strToken = strToken;
     }

@@ -3,6 +3,7 @@ package de.novacyb.temporal.insights;
 import de.novacyb.temporal.shared.EntryType;
 import de.novacyb.temporal.shared.token.ITemporalToken;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 
 import static de.novacyb.temporal.shared.Configuration.TOKEN_INDICATOR;
@@ -15,6 +16,8 @@ import static de.novacyb.temporal.shared.Configuration.TOKEN_SEPARATOR;
  * Created on 19.12.2018.
  */
 public class Temporal {
+    private final static String DEFAULT_VALUE = "";
+
     private final static Temporal INSTANCE = new Temporal();
 
     private Consumer<String> outputLink = System.out::println;
@@ -78,7 +81,8 @@ public class Temporal {
         sBuilder.append(TOKEN_SEPARATOR);
 
         // add token identifier
-        sBuilder.append(identifierToken.getTokenIdentifier());
+        sBuilder.append(identifierToken != null && identifierToken.getTokenIdentifier() != null
+                ? identifierToken.getTokenIdentifier() : DEFAULT_VALUE);
         sBuilder.append(TOKEN_SEPARATOR);
 
         // add the timestamp
@@ -86,18 +90,18 @@ public class Temporal {
         sBuilder.append(TOKEN_SEPARATOR);
 
         // add the lowercase type name
-        sBuilder.append(type.toString().toLowerCase());
+        sBuilder.append(type != null ? type.toString().toLowerCase() : DEFAULT_VALUE);
         sBuilder.append(TOKEN_SEPARATOR);
 
         // add the entry name
-        sBuilder.append(entryName);
+        sBuilder.append(Objects.requireNonNullElse(entryName,DEFAULT_VALUE));
 
         // add tags and related separators
         if (tags.length > 0)
             sBuilder.append(TOKEN_SEPARATOR);
 
         for (int i = 0; i < tags.length; i++) {
-            sBuilder.append(tags[i]);
+            sBuilder.append(Objects.requireNonNullElse(tags[i],DEFAULT_VALUE));
             if (i != tags.length - 1) {
                 sBuilder.append(TOKEN_SEPARATOR);
             }

@@ -6,7 +6,14 @@ _(temporary codename)_
 More information will follow soon.
 
 ## Java 7 Legacy Edition
-Gradle requires the environment variable `JDK7_HOME` to work properly for this branch!
+Gradle requires the variable `JDK7_HOME` in `gradle.properties` to be set!
+
+You can create `gradle.properties` in project root directory or `gradle.properties` in `GRADLE_USER_HOME` directory.
+
+Add whatever your path is to the JDK, e.g. for Mac
+```
+JDK7_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home
+```
 
 OpenJDK:<br>
 https://openjdk.java.net

@@ -5,6 +5,9 @@ import de.novacyb.temporal.shared.token.ITemporalToken;
 
 import java.util.function.Consumer;
 
+import static de.novacyb.temporal.shared.Configuration.TOKEN_INDICATOR;
+import static de.novacyb.temporal.shared.Configuration.TOKEN_SEPARATOR;
+
 /**
  * Temporal Insights
  *
@@ -12,19 +15,9 @@ import java.util.function.Consumer;
  * Created on 19.12.2018.
  */
 public class Temporal {
-    public final static String TOKEN_INDICATOR = "$$temporal$$";
-    public final static String TOKEN_SEPARATOR = "|";
+    private final static Temporal INSTANCE = new Temporal();
 
-    private static Consumer<String> outputLink = System.out::println;
-
-    /**
-     * can be used to use a custom logger as output<br>
-     * <i>(default is system out)</i>
-     * @param outputConsumer the output consumer
-     */
-    public static void setOutputLink(final Consumer<String> outputConsumer ) {
-        outputLink = outputConsumer;
-    }
+    private Consumer<String> outputLink = System.out::println;
 
     /**
      * report a entry
@@ -34,9 +27,36 @@ public class Temporal {
      * @param tags              search and filter tags
      */
     public static void report(final ITemporalToken identifierToken, final EntryType type, final String entryName,
+                          final String... tags) {
+
+        INSTANCE.addReport(identifierToken, type, entryName, tags);
+    }
+
+    /** report a entry
+     * @param identifierToken   report token to identify a unique object
+     * @param timestamp         the timestamp (The difference, measured in milliseconds, between the current time
+            *                          and midnight, January 1, 1970 UTC.)
+     * @param type              the type of the report
+     * @param entryName         the report entry name
+     * @param tags              search and filter tags
+     */
+    public static void report(final ITemporalToken identifierToken,final long timestamp, final EntryType type,
+                          final String entryName, final String... tags) {
+
+        INSTANCE.addReport(identifierToken, timestamp, type, entryName, tags);
+    }
+
+    /**
+     * report a entry
+     * @param identifierToken   report token to identify a unique object
+     * @param type              the type of the report
+     * @param entryName         the report entry name
+     * @param tags              search and filter tags
+     */
+    public void addReport(final ITemporalToken identifierToken, final EntryType type, final String entryName,
                               final String... tags) {
 
-        report(identifierToken, System.currentTimeMillis() , type, entryName, tags);
+        addReport(identifierToken, System.currentTimeMillis() , type, entryName, tags);
     }
 
     /**
@@ -48,7 +68,7 @@ public class Temporal {
      * @param entryName         the report entry name
      * @param tags              search and filter tags
      */
-    public static void report(final ITemporalToken identifierToken,final long timestamp, final EntryType type,
+    public void addReport(final ITemporalToken identifierToken,final long timestamp, final EntryType type,
                               final String entryName, final String... tags) {
 
         final var sBuilder = new StringBuilder();
@@ -84,6 +104,17 @@ public class Temporal {
         // send the result to output
         outputLink.accept(sBuilder.toString());
     }
+
+
+    /**
+     * can be used to use a custom logger as output<br>
+     * <i>(default is system out)</i>
+     * @param outputConsumer the output consumer
+     */
+    public void setOutputLink(final Consumer<String> outputConsumer ) {
+        outputLink = outputConsumer;
+    }
+
 
 
 }

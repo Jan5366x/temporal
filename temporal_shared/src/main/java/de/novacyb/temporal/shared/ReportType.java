@@ -1,10 +1,10 @@
 package de.novacyb.temporal.shared;
 
 /**
- * Entry Type
+ * Report Type
  * Created on 06.01.19.
  */
-public enum EntryType {
+public enum ReportType {
       NOTIFY,
       ERROR,
       WARN,

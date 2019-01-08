@@ -1,6 +1,6 @@
 package de.novacyb.temporal.insights;
 
-import de.novacyb.temporal.shared.EntryType;
+import de.novacyb.temporal.shared.ReportType;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.atomic.AtomicReference;
@@ -22,7 +22,7 @@ class TemporalTest {
         final var result = new AtomicReference<String>();
         temporal.setOutputLink(result::set);
 
-        temporal.addReport(() -> "TEST",3434, EntryType.NOTIFY, "TestA");
+        temporal.addReport(() -> "TEST",3434, ReportType.NOTIFY, "TestA");
         assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + "TEST" + TOKEN_SEPARATOR + "3434" + TOKEN_SEPARATOR
                 + "notify" +  TOKEN_SEPARATOR + "TestA",result.get() );
     }
@@ -34,18 +34,18 @@ class TemporalTest {
         temporal.setOutputLink(result::set);
 
         // test with one tag
-        temporal.addReport(() -> "TEST",3434, EntryType.NOTIFY, "TestA", "TagA");
+        temporal.addReport(() -> "TEST",3434, ReportType.NOTIFY, "TestA", "TagA");
         assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + "TEST" + TOKEN_SEPARATOR + "3434" + TOKEN_SEPARATOR
                 + "notify" +  TOKEN_SEPARATOR + "TestA" + TOKEN_SEPARATOR + "TagA",result.get() );
 
         // test with two tags
-        temporal.addReport(() -> "TEST",3434, EntryType.NOTIFY, "TestA", "TagA", "Tag B");
+        temporal.addReport(() -> "TEST",3434, ReportType.NOTIFY, "TestA", "TagA", "Tag B");
         assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + "TEST" + TOKEN_SEPARATOR + "3434" + TOKEN_SEPARATOR
                 + "notify" +  TOKEN_SEPARATOR + "TestA" + TOKEN_SEPARATOR + "TagA" + TOKEN_SEPARATOR + "Tag B",
                 result.get() );
 
         // test with three tags
-        temporal.addReport(() -> "TEST",3434, EntryType.NOTIFY, "TestA", "TagA", "Tag B",
+        temporal.addReport(() -> "TEST",3434, ReportType.NOTIFY, "TestA", "TagA", "Tag B",
                 "Tag C 45 &%&/$§");
         assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + "TEST" + TOKEN_SEPARATOR + "3434" + TOKEN_SEPARATOR
                         + "notify" +  TOKEN_SEPARATOR + "TestA" + TOKEN_SEPARATOR + "TagA" + TOKEN_SEPARATOR + "Tag B"
@@ -60,11 +60,11 @@ class TemporalTest {
         temporal.setOutputLink(result::set);
 
 
-        temporal.addReport(() -> null,3434, EntryType.NOTIFY, "TestA");
+        temporal.addReport(() -> null,3434, ReportType.NOTIFY, "TestA");
         assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + TOKEN_SEPARATOR + "3434" + TOKEN_SEPARATOR
                 + "notify" +  TOKEN_SEPARATOR + "TestA",result.get() );
 
-        temporal.addReport(null,3434, EntryType.NOTIFY, "TestA");
+        temporal.addReport(null,3434, ReportType.NOTIFY, "TestA");
         assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + TOKEN_SEPARATOR + "3434" + TOKEN_SEPARATOR
                 + "notify" +  TOKEN_SEPARATOR + "TestA",result.get() );
 
@@ -72,7 +72,7 @@ class TemporalTest {
         assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + "TEST" + TOKEN_SEPARATOR + "3434" + TOKEN_SEPARATOR
                 +  TOKEN_SEPARATOR + "TestA",result.get() );
 
-        temporal.addReport(() -> "TEST",3434, EntryType.NOTIFY, null);
+        temporal.addReport(() -> "TEST",3434, ReportType.NOTIFY, null);
         assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + "TEST" + TOKEN_SEPARATOR + "3434" + TOKEN_SEPARATOR
                 + "notify" +  TOKEN_SEPARATOR,result.get() );
     }

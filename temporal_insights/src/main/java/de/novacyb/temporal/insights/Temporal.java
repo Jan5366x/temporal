@@ -1,6 +1,6 @@
 package de.novacyb.temporal.insights;
 
-import de.novacyb.temporal.shared.EntryType;
+import de.novacyb.temporal.shared.ReportType;
 import de.novacyb.temporal.shared.token.ITemporalToken;
 
 import java.util.Objects;
@@ -30,7 +30,7 @@ public class Temporal {
      * @param entryName         the report entry name
      * @param tags              search and filter tags
      */
-    public static void report(final String identifierString, final EntryType type, final String entryName,
+    public static void report(final String identifierString, final ReportType type, final String entryName,
                               final String... tags) {
         report(() -> identifierString, type, entryName, tags);
     }
@@ -42,8 +42,8 @@ public class Temporal {
      * @param entryName         the report entry name
      * @param tags              search and filter tags
      */
-    public static void report(final ITemporalToken identifierToken, final EntryType type, final String entryName,
-                          final String... tags) {
+    public static void report(final ITemporalToken identifierToken, final ReportType type, final String entryName,
+                              final String... tags) {
 
         INSTANCE.addReport(identifierToken, type, entryName, tags);
     }
@@ -56,7 +56,7 @@ public class Temporal {
      * @param entryName         the report entry name
      * @param tags              search and filter tags
      */
-    public static void report(final String identifierString,final long timestamp, final EntryType type,
+    public static void report(final String identifierString,final long timestamp, final ReportType type,
                               final String entryName, final String... tags) {
         report(() -> identifierString, timestamp, type, entryName, tags);
     }
@@ -69,7 +69,7 @@ public class Temporal {
      * @param entryName         the report entry name
      * @param tags              search and filter tags
      */
-    public static void report(final ITemporalToken identifierToken,final long timestamp, final EntryType type,
+    public static void report(final ITemporalToken identifierToken,final long timestamp, final ReportType type,
                           final String entryName, final String... tags) {
 
         INSTANCE.addReport(identifierToken, timestamp, type, entryName, tags);
@@ -82,8 +82,8 @@ public class Temporal {
      * @param entryName         the report entry name
      * @param tags              search and filter tags
      */
-    public void addReport(final ITemporalToken identifierToken, final EntryType type, final String entryName,
-                              final String... tags) {
+    public void addReport(final ITemporalToken identifierToken, final ReportType type, final String entryName,
+                          final String... tags) {
 
         addReport(identifierToken, System.currentTimeMillis() , type, entryName, tags);
     }
@@ -97,7 +97,7 @@ public class Temporal {
      * @param entryName         the report entry name
      * @param tags              search and filter tags
      */
-    public void addReport(final ITemporalToken identifierToken,final long timestamp, final EntryType type,
+    public void addReport(final ITemporalToken identifierToken,final long timestamp, final ReportType type,
                               final String entryName, final String... tags) {
 
         final var sBuilder = new StringBuilder();

@@ -9,9 +9,12 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
+/*
 tasks.withType(JavaCompile) {
     options.bootstrapClasspath = files("$JDK7_HOME/jre/lib/rt.jar")
 }
+ */
+
 
 compileJava {
     doFirst {

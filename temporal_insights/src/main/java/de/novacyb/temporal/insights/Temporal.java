@@ -34,7 +34,12 @@ public class Temporal {
      */
     public static void report(final String identifierString, final EntryType type, final String entryName,
                               final String... tags) {
-        report(() -> identifierString, type, entryName, tags);
+        report(new ITemporalToken() {
+            @Override
+            public String getTokenIdentifier() {
+                return identifierString;
+            }
+        }, type, entryName, tags);
     }
 
     /**
@@ -60,7 +65,12 @@ public class Temporal {
      */
     public static void report(final String identifierString,final long timestamp, final EntryType type,
                               final String entryName, final String... tags) {
-        report(() -> identifierString, timestamp, type, entryName, tags);
+        report(new ITemporalToken() {
+            @Override
+            public String getTokenIdentifier() {
+                return identifierString;
+            }
+        }, timestamp, type, entryName, tags);
     }
 
     /** report a entry
@@ -122,14 +132,14 @@ public class Temporal {
         sBuilder.append(TOKEN_SEPARATOR);
 
         // add the entry name
-        sBuilder.append(Objects.requireNonNullElse(entryName,DEFAULT_VALUE));
+        sBuilder.append(entryName != null ? entryName : DEFAULT_VALUE);
 
         // add tags and related separators
         if (tags.length > 0)
             sBuilder.append(TOKEN_SEPARATOR);
 
         for (int i = 0; i < tags.length; i++) {
-            sBuilder.append(Objects.requireNonNullElse(tags[i],DEFAULT_VALUE));
+            sBuilder.append(tags[i] != null ? tags[i] : DEFAULT_VALUE);
             if (i != tags.length - 1) {
                 sBuilder.append(TOKEN_SEPARATOR);
             }

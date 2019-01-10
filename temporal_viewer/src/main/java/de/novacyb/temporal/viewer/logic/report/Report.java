@@ -1,6 +1,6 @@
 package de.novacyb.temporal.viewer.logic.report;
 
-import de.novacyb.temporal.shared.EntryType;
+import de.novacyb.temporal.shared.ReportType;
 
 /**
  * Temporal Report
@@ -9,10 +9,10 @@ import de.novacyb.temporal.shared.EntryType;
 public class Report {
     private final String identifier;
     private final String name;
-    private final EntryType type;
+    private final ReportType type;
     private final String[] tags;
 
-    public Report(final String identifier, final String name, final EntryType type, final String... tags)
+    public Report(final String identifier, final String name, final ReportType type, final String... tags)
             throws NullPointerException, IllegalArgumentException {
 
         if (identifier == null || name == null || type == null)
@@ -35,7 +35,7 @@ public class Report {
         return name;
     }
 
-    public EntryType getType() {
+    public ReportType getType() {
         return type;
     }
 

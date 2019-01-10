@@ -1,4 +1,4 @@
-
+import java.text.SimpleDateFormat
 
 sourceCompatibility = 11
 targetCompatibility = 11
@@ -50,6 +50,14 @@ sourceSets {
 jar {
     archiveName 'temporal_viewer.jar'
     from configurations.compile.collect{ zipTree( it) }
+    manifest {
+        attributes(
+                'Build-Timestamp': new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(new Date()),
+                'Created-By'     : "Gradle ${gradle.gradleVersion}",
+                'Build-Jdk'      : "${System.properties['java.version']} (${System.properties['java.vendor']} ${System.properties['java.vm.version']})",
+                'Build-OS'       : "${System.properties['os.name']} ${System.properties['os.arch']} ${System.properties['os.version']}"
+        )
+    }
 }
 
 

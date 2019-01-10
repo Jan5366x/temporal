@@ -1,12 +1,12 @@
-package de.novacyb.temporal.shared.token;
+package de.novacyb.temporal.shared.anchor;
 
 /**
  * Object Token Interface
  * Created on 19.12.2018.
  */
-public interface ITemporalToken {
+public interface IIdentifierAnchor {
     /**
-     * the token identifier
+     * the anchor identifier
      * @return TODO javadoc
      */
     String getTokenIdentifier();

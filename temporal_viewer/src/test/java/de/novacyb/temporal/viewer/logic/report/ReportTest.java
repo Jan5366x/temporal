@@ -2,8 +2,8 @@ package de.novacyb.temporal.viewer.logic.report;
 
 import org.junit.jupiter.api.Test;
 
-import static de.novacyb.temporal.shared.EntryType.FAIL;
-import static de.novacyb.temporal.shared.EntryType.NOTIFY;
+import static de.novacyb.temporal.shared.ReportType.FAIL;
+import static de.novacyb.temporal.shared.ReportType.NOTIFY;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ReportTest {

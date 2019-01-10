@@ -1,10 +1,9 @@
 package de.novacyb.temporal.insights;
 
-import de.novacyb.temporal.shared.EntryType;
+import de.novacyb.temporal.shared.ReportType;
 import de.novacyb.temporal.shared.legacy.LegacyConsumer;
 import de.novacyb.temporal.shared.token.ITemporalToken;
 import org.junit.Test;
-
 
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -35,9 +34,9 @@ public class TemporalTest {
             public String getTokenIdentifier() {
                 return "TEST";
             }
-        },3434, EntryType.NOTIFY, "TestA");
-        assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + "TEST" + TOKEN_SEPARATOR + "3434" + TOKEN_SEPARATOR
-                + "notify" +  TOKEN_SEPARATOR + "TestA",result.get() );
+        },"main",3434L, ReportType.NOTIFY, "TestA");
+        assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + "TEST" + TOKEN_SEPARATOR + "main" + TOKEN_SEPARATOR
+                + "3434" + TOKEN_SEPARATOR + "notify" +  TOKEN_SEPARATOR + "TestA",result.get() );
     }
 
     @Test
@@ -57,20 +56,20 @@ public class TemporalTest {
             public String getTokenIdentifier() {
                 return "TEST";
             }
-        },3434, EntryType.NOTIFY, "TestA", "TagA");
-        assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + "TEST" + TOKEN_SEPARATOR + "3434" + TOKEN_SEPARATOR
-                + "notify" +  TOKEN_SEPARATOR + "TestA" + TOKEN_SEPARATOR + "TagA",result.get() );
+        },"main",3434L, ReportType.NOTIFY, "TestA",
+                "TagA");
+
+        assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + "TEST" + TOKEN_SEPARATOR + "main" + TOKEN_SEPARATOR
+                + "3434" + TOKEN_SEPARATOR + "notify" +  TOKEN_SEPARATOR + "TestA" + TOKEN_SEPARATOR + "TagA",
+                result.get() );
 
         // test with two tags
-        temporal.addReport(new ITemporalToken() {
-            @Override
-            public String getTokenIdentifier() {
-                return "TEST";
-            }
-        },3434, EntryType.NOTIFY, "TestA", "TagA", "Tag B");
-        assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + "TEST" + TOKEN_SEPARATOR + "3434" + TOKEN_SEPARATOR
-                + "notify" +  TOKEN_SEPARATOR + "TestA" + TOKEN_SEPARATOR + "TagA" + TOKEN_SEPARATOR + "Tag B",
-                result.get() );
+        temporal.addReport(() -> "TEST","main",3434L, ReportType.NOTIFY, "TestA",
+                "TagA", "Tag B");
+
+        assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + "TEST" + TOKEN_SEPARATOR + "main" + TOKEN_SEPARATOR
+                        + "3434" + TOKEN_SEPARATOR + "notify" +  TOKEN_SEPARATOR + "TestA" + TOKEN_SEPARATOR
+                        + "TagA" + TOKEN_SEPARATOR + "Tag B", result.get() );
 
         // test with three tags
         temporal.addReport(new ITemporalToken() {
@@ -78,11 +77,12 @@ public class TemporalTest {
                                public String getTokenIdentifier() {
                                    return "TEST";
                                }
-                           },3434, EntryType.NOTIFY, "TestA", "TagA", "Tag B",
-                "Tag C 45 &%&/$§");
-        assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + "TEST" + TOKEN_SEPARATOR + "3434" + TOKEN_SEPARATOR
-                        + "notify" +  TOKEN_SEPARATOR + "TestA" + TOKEN_SEPARATOR + "TagA" + TOKEN_SEPARATOR + "Tag B"
-                        + TOKEN_SEPARATOR +  "Tag C 45 &%&/$§", result.get() );
+                           }, "main",3434L, ReportType.NOTIFY, "TestA",
+                "TagA", "Tag B", "Tag C 45 &%&/$§");
+
+        assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + "TEST" + TOKEN_SEPARATOR + "main" + TOKEN_SEPARATOR
+                + "3434" + TOKEN_SEPARATOR + "notify" +  TOKEN_SEPARATOR + "TestA" + TOKEN_SEPARATOR + "TagA"
+                + TOKEN_SEPARATOR + "Tag B" + TOKEN_SEPARATOR +  "Tag C 45 &%&/$§", result.get() );
     }
 
 
@@ -103,30 +103,30 @@ public class TemporalTest {
             public String getTokenIdentifier() {
                 return null;
             }
-        },3434, EntryType.NOTIFY, "TestA");
-        assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + TOKEN_SEPARATOR + "3434" + TOKEN_SEPARATOR
-                + "notify" +  TOKEN_SEPARATOR + "TestA",result.get() );
+        },"main", 3434, ReportType.NOTIFY, "TestA");
+        assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + TOKEN_SEPARATOR + "main" + TOKEN_SEPARATOR
+                + "3434" + TOKEN_SEPARATOR + "notify" +  TOKEN_SEPARATOR + "TestA",result.get() );
 
-        temporal.addReport(null,3434, EntryType.NOTIFY, "TestA");
-        assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + TOKEN_SEPARATOR + "3434" + TOKEN_SEPARATOR
-                + "notify" +  TOKEN_SEPARATOR + "TestA",result.get() );
-
-        temporal.addReport(new ITemporalToken() {
-            @Override
-            public String getTokenIdentifier() {
-                return "TEST";
-            }
-        },3434, null, "TestA");
-        assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + "TEST" + TOKEN_SEPARATOR + "3434" + TOKEN_SEPARATOR
-                +  TOKEN_SEPARATOR + "TestA",result.get() );
+        temporal.addReport(null,"main",3434, ReportType.NOTIFY, "TestA");
+        assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + TOKEN_SEPARATOR + "main" + TOKEN_SEPARATOR
+                + "3434" + TOKEN_SEPARATOR + "notify" +  TOKEN_SEPARATOR + "TestA",result.get() );
 
         temporal.addReport(new ITemporalToken() {
             @Override
             public String getTokenIdentifier() {
                 return "TEST";
             }
-        },3434, EntryType.NOTIFY, null);
-        assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + "TEST" + TOKEN_SEPARATOR + "3434" + TOKEN_SEPARATOR
-                + "notify" +  TOKEN_SEPARATOR,result.get() );
+        },"main",3434, null, "TestA");
+        assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + "TEST" + TOKEN_SEPARATOR + "main" + TOKEN_SEPARATOR
+                + "3434" + TOKEN_SEPARATOR +  TOKEN_SEPARATOR + "TestA",result.get() );
+
+        temporal.addReport(new ITemporalToken() {
+            @Override
+            public String getTokenIdentifier() {
+                return "TEST";
+            }
+        },"main",3434, ReportType.NOTIFY, null);
+        assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + "TEST" + TOKEN_SEPARATOR + "main" + TOKEN_SEPARATOR
+                + "3434" + TOKEN_SEPARATOR + "notify" +  TOKEN_SEPARATOR,result.get() );
     }
 }

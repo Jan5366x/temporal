@@ -6,7 +6,7 @@ package de.novacyb.temporal.shared.anchor;
  * Created on 19.12.2018.
  * @deprecated because the reports now directly accept strings
  */
-@Deprecated(forRemoval = true , since = "0.1.1.0")
+@Deprecated
 public class StringAnchor implements IIdentifierAnchor {
     private final String strToken;
 

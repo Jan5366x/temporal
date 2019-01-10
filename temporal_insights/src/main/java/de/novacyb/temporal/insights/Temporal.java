@@ -41,7 +41,7 @@ public class Temporal {
     public static void report(final String identifierString, final ReportType type, final String entryName,
                               final String... tags) {
 
-        report(new ITemporalToken() {
+        report(new IIdentifierAnchor() {
             @Override
             public String getTokenIdentifier() {
                 return identifierString;
@@ -59,7 +59,12 @@ public class Temporal {
     public static void report(final String identifierString, final String subBranch, final ReportType type,
                               final String entryName, final String... tags) {
 
-        report(() -> identifierString, subBranch, type, entryName, tags);
+        report(new IIdentifierAnchor() {
+            @Override
+            public String getTokenIdentifier() {
+                return identifierString;
+            }
+        }, subBranch, type, entryName, tags);
     }
 
     /**
@@ -100,7 +105,12 @@ public class Temporal {
     public static void report(final String identifierAnchorString, final long timestamp,
                               final ReportType type, final String entryName, final String... tags) {
 
-        report(() -> identifierAnchorString, timestamp, type, entryName, tags);
+        report(new IIdentifierAnchor() {
+            @Override
+            public String getTokenIdentifier() {
+                return identifierAnchorString;
+            }
+        }, timestamp, type, entryName, tags);
     }
 
     /** report a entry
@@ -115,7 +125,12 @@ public class Temporal {
     public static void report(final String identifierAnchorString,final String subBranch, final long timestamp,
                               final ReportType type, final String entryName, final String... tags) {
 
-        report(() -> identifierAnchorString, subBranch, timestamp, type, entryName, tags);
+        report(new IIdentifierAnchor() {
+            @Override
+            public String getTokenIdentifier() {
+                return identifierAnchorString;
+            }
+        }, subBranch, timestamp, type, entryName, tags);
     }
 
     /** report a entry

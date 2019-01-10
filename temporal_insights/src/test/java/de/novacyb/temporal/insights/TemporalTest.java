@@ -1,8 +1,9 @@
 package de.novacyb.temporal.insights;
 
 import de.novacyb.temporal.shared.ReportType;
+import de.novacyb.temporal.shared.anchor.IIdentifierAnchor;
 import de.novacyb.temporal.shared.legacy.LegacyConsumer;
-import de.novacyb.temporal.shared.token.ITemporalToken;
+
 import org.junit.Test;
 
 import java.util.concurrent.atomic.AtomicReference;
@@ -29,7 +30,7 @@ public class TemporalTest {
             }
         });
 
-        temporal.addReport(new ITemporalToken() {
+        temporal.addReport(new IIdentifierAnchor() {
             @Override
             public String getTokenIdentifier() {
                 return "TEST";
@@ -51,7 +52,7 @@ public class TemporalTest {
         });
 
         // test with one tag
-        temporal.addReport(new ITemporalToken() {
+        temporal.addReport(new IIdentifierAnchor() {
             @Override
             public String getTokenIdentifier() {
                 return "TEST";
@@ -64,7 +65,12 @@ public class TemporalTest {
                 result.get() );
 
         // test with two tags
-        temporal.addReport(() -> "TEST","main",3434L, ReportType.NOTIFY, "TestA",
+        temporal.addReport(new IIdentifierAnchor() {
+                               @Override
+                               public String getTokenIdentifier() {
+                                   return "TEST";
+                               }
+                           },"main",3434L, ReportType.NOTIFY, "TestA",
                 "TagA", "Tag B");
 
         assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + "TEST" + TOKEN_SEPARATOR + "main" + TOKEN_SEPARATOR
@@ -72,7 +78,7 @@ public class TemporalTest {
                         + "TagA" + TOKEN_SEPARATOR + "Tag B", result.get() );
 
         // test with three tags
-        temporal.addReport(new ITemporalToken() {
+        temporal.addReport(new IIdentifierAnchor() {
                                @Override
                                public String getTokenIdentifier() {
                                    return "TEST";
@@ -98,7 +104,7 @@ public class TemporalTest {
         });
 
 
-        temporal.addReport(new ITemporalToken() {
+        temporal.addReport(new IIdentifierAnchor() {
             @Override
             public String getTokenIdentifier() {
                 return null;
@@ -111,7 +117,7 @@ public class TemporalTest {
         assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + TOKEN_SEPARATOR + "main" + TOKEN_SEPARATOR
                 + "3434" + TOKEN_SEPARATOR + "notify" +  TOKEN_SEPARATOR + "TestA",result.get() );
 
-        temporal.addReport(new ITemporalToken() {
+        temporal.addReport(new IIdentifierAnchor() {
             @Override
             public String getTokenIdentifier() {
                 return "TEST";
@@ -120,7 +126,7 @@ public class TemporalTest {
         assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + "TEST" + TOKEN_SEPARATOR + "main" + TOKEN_SEPARATOR
                 + "3434" + TOKEN_SEPARATOR +  TOKEN_SEPARATOR + "TestA",result.get() );
 
-        temporal.addReport(new ITemporalToken() {
+        temporal.addReport(new IIdentifierAnchor() {
             @Override
             public String getTokenIdentifier() {
                 return "TEST";

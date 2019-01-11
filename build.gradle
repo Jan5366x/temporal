@@ -6,7 +6,7 @@ plugins {
 
 allprojects {
     group 'de.novacyb.temporal'
-    version '0.1.1.0-SNAPSHOT'
+    version '0.1.2.0-SNAPSHOT'
 
     def currentOS = org.gradle.internal.os.OperatingSystem.current()
     def platform

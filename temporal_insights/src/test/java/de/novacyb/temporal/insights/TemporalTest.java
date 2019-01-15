@@ -135,4 +135,39 @@ public class TemporalTest {
         assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + "TEST" + TOKEN_SEPARATOR + "main" + TOKEN_SEPARATOR
                 + "3434" + TOKEN_SEPARATOR + "notify" +  TOKEN_SEPARATOR,result.get() );
     }
+
+
+    @Test
+    void activeToggle() {
+        final var temporal = new Temporal();
+        final var result = new AtomicReference<String>();
+        temporal.setOutputLink(result::set);
+
+        // should be active by default
+        temporal.addReport(() -> null,"main", 3434, ReportType.NOTIFY, "TestA");
+        assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + TOKEN_SEPARATOR + "main" + TOKEN_SEPARATOR
+                + "3434" + TOKEN_SEPARATOR + "notify" +  TOKEN_SEPARATOR + "TestA",result.get() );
+
+        temporal.setActive(false);
+
+        // clear result
+        result.set(null);
+
+        temporal.addReport(() -> null,"main", 33222, ReportType.NOTIFY, "TestB");
+        assertNull(result.get());
+
+        temporal.setActive(true);
+
+        temporal.addReport(() -> null,"main", 11111, ReportType.NOTIFY, "TestC");
+        assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + TOKEN_SEPARATOR + "main" + TOKEN_SEPARATOR
+                + "11111" + TOKEN_SEPARATOR + "notify" +  TOKEN_SEPARATOR + "TestC",result.get() );
+
+        temporal.setActive(false);
+
+        // clear result
+        result.set(null);
+
+        temporal.addReport(() -> null,"main", 77, ReportType.NOTIFY, "TestD");
+        assertNull(result.get());
+    }
 }

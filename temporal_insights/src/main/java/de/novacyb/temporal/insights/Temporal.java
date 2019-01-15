@@ -240,4 +240,12 @@ public class Temporal {
     public void setActive(boolean value) {
         this.active = value;
     }
+
+    /**
+     * The main instance of temporal
+     * @return returns the main instance of temporal
+     */
+    public static Temporal getInstance() {
+        return INSTANCE;
+    }
 }

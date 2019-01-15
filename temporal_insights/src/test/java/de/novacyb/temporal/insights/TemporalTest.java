@@ -138,13 +138,23 @@ public class TemporalTest {
 
 
     @Test
-    void activeToggle() {
-        final var temporal = new Temporal();
-        final var result = new AtomicReference<String>();
-        temporal.setOutputLink(result::set);
+    public void activeToggle() {
+        final Temporal temporal = new Temporal();
+        final AtomicReference<String> result = new AtomicReference<String>();
+        temporal.setOutputLink(new LegacyConsumer<String>() {
+            @Override
+            public void accept(String value) {
+                result.set(value);
+            }
+        });
 
         // should be active by default
-        temporal.addReport(() -> null,"main", 3434, ReportType.NOTIFY, "TestA");
+        temporal.addReport(new IIdentifierAnchor() {
+            @Override
+            public String getTokenIdentifier() {
+                return null;
+            }
+        },"main", 3434, ReportType.NOTIFY, "TestA");
         assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + TOKEN_SEPARATOR + "main" + TOKEN_SEPARATOR
                 + "3434" + TOKEN_SEPARATOR + "notify" +  TOKEN_SEPARATOR + "TestA",result.get() );
 
@@ -153,12 +163,22 @@ public class TemporalTest {
         // clear result
         result.set(null);
 
-        temporal.addReport(() -> null,"main", 33222, ReportType.NOTIFY, "TestB");
+        temporal.addReport(new IIdentifierAnchor() {
+            @Override
+            public String getTokenIdentifier() {
+                return null;
+            }
+        },"main", 33222, ReportType.NOTIFY, "TestB");
         assertNull(result.get());
 
         temporal.setActive(true);
 
-        temporal.addReport(() -> null,"main", 11111, ReportType.NOTIFY, "TestC");
+        temporal.addReport(new IIdentifierAnchor() {
+            @Override
+            public String getTokenIdentifier() {
+                return null;
+            }
+        },"main", 11111, ReportType.NOTIFY, "TestC");
         assertEquals(TOKEN_INDICATOR + TOKEN_SEPARATOR + TOKEN_SEPARATOR + "main" + TOKEN_SEPARATOR
                 + "11111" + TOKEN_SEPARATOR + "notify" +  TOKEN_SEPARATOR + "TestC",result.get() );
 
@@ -167,7 +187,12 @@ public class TemporalTest {
         // clear result
         result.set(null);
 
-        temporal.addReport(() -> null,"main", 77, ReportType.NOTIFY, "TestD");
+        temporal.addReport(new IIdentifierAnchor() {
+            @Override
+            public String getTokenIdentifier() {
+                return null;
+            }
+        },"main", 77, ReportType.NOTIFY, "TestD");
         assertNull(result.get());
     }
 }

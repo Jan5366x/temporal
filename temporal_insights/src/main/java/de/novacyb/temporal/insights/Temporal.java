@@ -14,6 +14,7 @@ import static de.novacyb.temporal.shared.Configuration.TOKEN_SEPARATOR;
  * Created on 19.12.2018.
  */
 public class Temporal {
+
     private final static String DEFAULT_VALUE = "";
 
     /**
@@ -26,6 +27,10 @@ public class Temporal {
      */
     private Consumer<String> outputLink = System.out::println;
 
+    /**
+     * toggle if temporal should report to outputlink our not
+     */
+    private boolean active = true;
 
     /**
      * report a entry
@@ -165,6 +170,10 @@ public class Temporal {
     public void addReport(final IIdentifierAnchor identifierAnchor, final String subBranch, final long timestamp,
                           final ReportType type, final String entryName, final String... tags) {
 
+        // check active state
+        if (!active)
+            return;
+
         final var sBuilder = new StringBuilder();
 
         // add anchor report indicator for easier parsing
@@ -216,6 +225,19 @@ public class Temporal {
         outputLink = outputConsumer;
     }
 
+    /**
+     * returns the state if temporal should report to the output link
+     * @return <i>true</i> if temporal should report to the output link
+     */
+    public boolean isActive() {
+        return active;
+    }
 
-
+    /**
+     * sets the state if temporal should report to the output link
+     * @param value the new value
+     */
+    public void setActive(boolean value) {
+        this.active = value;
+    }
 }

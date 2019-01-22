@@ -25,4 +25,4 @@ test-viewer:
     - gradle :temporal_viewer:clean :temporal_viewer:test
   when: always
 
-# TODO setup ci file
+# TODO add build artifacts

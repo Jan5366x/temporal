@@ -83,7 +83,7 @@ public class SmartProperties {
      */
     public int getInteger(final String key, final int defaultValue) throws NumberFormatException {
         try {
-            return Integer.parseInt(getString(key));
+            return Integer.parseInt(getString(key, String.valueOf(defaultValue)));
         } catch (NumberFormatException e) {
             handleParseError(e, key);
             throw e;
@@ -107,7 +107,7 @@ public class SmartProperties {
      */
     public long getLong(final String key, final long defaultValue) throws NumberFormatException {
         try {
-            return Long.parseLong(getString(key));
+            return Long.parseLong(getString(key, String.valueOf(defaultValue)));
         } catch (NumberFormatException e) {
             handleParseError(e, key);
             throw e;
@@ -133,7 +133,7 @@ public class SmartProperties {
      */
     public float getFloat(final String key, final float defaultValue) throws NumberFormatException {
         try {
-            return Float.parseFloat(getString(key));
+            return Float.parseFloat(getString(key, String.valueOf(defaultValue)));
         } catch (NumberFormatException e) {
             handleParseError(e, key);
             throw e;
@@ -159,7 +159,7 @@ public class SmartProperties {
      */
     public double getDouble(final String key, final double defaultValue) throws NumberFormatException {
         try {
-            return Double.parseDouble(getString(key));
+            return Double.parseDouble(getString(key, String.valueOf(defaultValue)));
         } catch (NumberFormatException e) {
             handleParseError(e, key);
             throw e;

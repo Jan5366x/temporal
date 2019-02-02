@@ -13,11 +13,18 @@ public class SmartProperties {
     private final Properties properties = new Properties();
 
     /**
+     * empty constructor
+     */
+    public SmartProperties() {
+
+    }
+
+    /**
      * Smart Properties Constructor
      * @param resource the resource path in current module
      */
     public SmartProperties(final String resource) {
-        try(final var input = getClass().getModule().getResourceAsStream("/app.properties")) {
+        try(final var input = getClass().getModule().getResourceAsStream(resource)) {
             load(input);
         } catch (Exception e) {
             System.err.println("Error while loading app properties!");

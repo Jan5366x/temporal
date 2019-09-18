@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<?import javafx.scene.layout.AnchorPane?>
+
+<!-- fx:controller="de.novacyb.temporal.viewer.ui.window.AboutWindow" -->
+<AnchorPane prefHeight="210.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" >
+    <children>
+
+    </children>
+</AnchorPane>

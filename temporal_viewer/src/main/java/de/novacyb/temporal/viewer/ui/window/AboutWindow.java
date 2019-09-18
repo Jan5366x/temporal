@@ -1,49 +1,29 @@
 package de.novacyb.temporal.viewer.ui.window;
 
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
- * Console Source Window
- * Created on 06.01.19.
+ * About Window Fx Controller
+ *
+ * @author Jan Schwien
+ * Created on 19.09.19.
  */
-public class ConsoleSourceWindow implements Initializable {
+public class AboutWindow {
     private final static int PREFERRED_WIDTH = 450;
     private final static int PREFERRED_HEIGHT = 210;
 
-    public Button cancelButton;
-    public Button okButton;
-    public TextArea commandTextArea;
-    public ChoiceBox commandModeChoiceBox;
-
-    @Override
-    public void initialize(final URL location, final ResourceBundle resources) {
-
-    }
-
-    /**
-     * show plugin dialog window
-     *
-     * @param owner the owner window
-     */
-    public void showDialog(final Window owner) {
+    public void showDialog(final Stage owner) {
         try {
             final var window = new Stage();
 
             final var fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/ui/window/console_source_window.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/ui/window/about_window.fxml"));
             fxmlLoader.setController(this);
             final Parent root = fxmlLoader.load();
 
@@ -51,7 +31,7 @@ public class ConsoleSourceWindow implements Initializable {
             if (owner != null)
                 window.initOwner(owner);
             window.setResizable(false);
-            window.setTitle("Add Source");
+            window.setTitle("About");
 
             // set icon
             if (owner instanceof Stage && ((Stage) owner).getIcons().size() > 0)
@@ -65,9 +45,8 @@ public class ConsoleSourceWindow implements Initializable {
             window.initModality(Modality.APPLICATION_MODAL);
             window.showAndWait();
         } catch (IOException e) {
-            System.err.println("Error on show Console Source Window!");
+            System.err.println("Error on show About Window!");
             e.printStackTrace();
         }
     }
-
 }

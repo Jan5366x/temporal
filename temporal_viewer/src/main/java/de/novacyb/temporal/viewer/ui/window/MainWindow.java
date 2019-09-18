@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Main Window Controller
+ * Main Window FX Controller
  * Created on 19.12.2018.
  */
 public class MainWindow implements Initializable {
@@ -79,4 +79,7 @@ public class MainWindow implements Initializable {
     }
 
 
+    public void onAbout(ActionEvent actionEvent) {
+        new AboutWindow().showDialog(getStage());
+    }
 }

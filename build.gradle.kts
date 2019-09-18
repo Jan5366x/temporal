@@ -48,8 +48,8 @@ allprojects {
 }
 
 configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_HIGHER
+    targetCompatibility = JavaVersion.VERSION_HIGHER
 }
 
 subprojects {

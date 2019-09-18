@@ -10,7 +10,7 @@ dependencies {
     implementation("org.openjfx:javafx-controls:" + project.extra.get("openJfxSpecificVersion").toString())
     implementation("org.openjfx:javafx-fxml:" + project.extra.get("openJfxSpecificVersion").toString())
 
-    testImplementation("org.reactfx", "reactfx", project.extra.get("reactfxVersion").toString())
+    implementation("org.reactfx", "reactfx", project.extra.get("reactfxVersion").toString())
 
     testImplementation("org.junit.platform", "junit-platform-launcher", project.extra.get("jUnitPlatformVersion").toString())
     testImplementation("org.junit.jupiter", "junit-jupiter-api", project.extra.get("jUnitVersion").toString())

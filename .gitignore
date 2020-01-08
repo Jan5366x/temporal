@@ -226,3 +226,5 @@ fabric.properties
 
 # Custom
 /temporal_viewer/build/
+/temporal_shared/build/
+/temporal_insights/build/

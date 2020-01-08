@@ -5,10 +5,29 @@ _(temporary codename)_
 
 More information will follow soon.
 
+**>>> This tool is still in development and is not ready to use! <<<**
+
 OpenJDK:<br>
 https://openjdk.java.net
 
-OpenJfx setup tutorial:<br>
+OpenJfx setup:<br>
+1. Download JFX - https://gluonhq.com/products/javafx/
+2. unzip it to a desired location
+3. Add an environment variable pointing to the lib directory of the runtime
+
+    **Linux / Mac**
+    ```
+    export PATH_TO_FX=path/to/javafx-sdk-13/lib
+    ```
+   
+   **Windows**
+   ```
+   set PATH_TO_FX="path\to\javafx-sdk-13\lib"
+   ```
+   _(Or via extend system settings -> environment variables ui)_
+
+You can find more setup details at:
+
 https://openjfx.io/openjfx-docs/
 
 ### VM options for Temporal Viewer
@@ -16,6 +35,12 @@ https://openjfx.io/openjfx-docs/
 --module-path ${PATH_TO_FX}
 --add-modules=javafx.controls,javafx.fxml
 ```
+
+**OpenJFX Note:**
+
+Make sure to add the required modules, keeping into account transitive dependencies are automatically
+resolved (for instance, there is no need to add javafx.graphics module,
+since it is transitively required by the javafx.controls module).
 
 ### Token Example
 ```

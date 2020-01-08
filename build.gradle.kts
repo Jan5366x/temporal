@@ -12,7 +12,7 @@ allprojects {
 
 
     // version config
-    val openJfxVersion = "11.0.2"
+    val openJfxVersion = "13.0.1"
     val reactfxVersion = "2.0-M5"
     val troveVersion = "3.0.3"
     val jUnitVersion = "5.4.2"
@@ -48,8 +48,8 @@ allprojects {
 }
 
 configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_HIGHER
-    targetCompatibility = JavaVersion.VERSION_HIGHER
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 subprojects {

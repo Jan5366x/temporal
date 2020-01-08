@@ -1,5 +1,4 @@
-image: novacyb/openjdk11_javafx11_gradle:latest
-# TODO update to java 13 docker image
+image: novacyb/openjdk11_javafx13_gradle:latest
 
 stages:
   - test-shared

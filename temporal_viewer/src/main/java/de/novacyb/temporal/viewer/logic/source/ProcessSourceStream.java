@@ -16,7 +16,7 @@ public class ProcessSourceStream extends SourceStream {
      *
      * @param workingDirectory the working dictionary to work in
      * @param command the executing command like "myCommand", "myArg1", "myArg2"
-     * @throws IOException
+     * @throws IOException if a I/O error occurs
      */
     public void init(final File workingDirectory, final String... command) throws IOException {
         final var processBuilder = new ProcessBuilder("myCommand", "myArg1", "myArg2");
@@ -37,7 +37,7 @@ public class ProcessSourceStream extends SourceStream {
 
     private void setupHelperThread(final Thread thread) {
         thread.setDaemon(true);
-        thread.run();
+        thread.start();
     }
 
     private void observeStream(final BufferedReader stream) {

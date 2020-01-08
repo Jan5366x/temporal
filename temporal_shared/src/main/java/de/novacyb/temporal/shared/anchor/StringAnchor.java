@@ -11,8 +11,8 @@ public class StringAnchor implements IIdentifierAnchor {
     private final String strToken;
 
     /**
-     * String Token
-     * @param strToken
+     * String Anchor constructor
+     * @param strToken the string token
      */
     public StringAnchor(final String strToken) {
         this.strToken = strToken;

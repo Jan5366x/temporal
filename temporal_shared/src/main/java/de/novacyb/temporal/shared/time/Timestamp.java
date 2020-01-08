@@ -36,7 +36,7 @@ public class Timestamp {
     /**
      * Creates a new timestamp with a given delta
      * @param delta the time delta to apply to the "now" time
-     * @return
+     * @return returns the new created timestamp
      */
     public static Timestamp now(final long delta) {
         return new Timestamp(System.currentTimeMillis() + delta);

@@ -8,8 +8,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 /**
- * Temporal Main Application
+ * Temporal Viewer - Main Application
  * Created on 18.12.18.
  */
 public class MainApp extends Application {
@@ -30,10 +32,10 @@ public class MainApp extends Application {
 
     /**
      * setup and show base ui
-     * @param stage the primary stage
-     * @throws Exception
+     * @param stage         the primary window stage
+     * @throws IOException  if an error occurs during fxml loading
      */
-    private void setupUI(final Stage stage) throws Exception {
+    private void setupUI(final Stage stage) throws IOException {
         stage.setTitle("Temporal " + getVersionString() +  " - Timing Debugger");
 
         // prepare parent
@@ -57,6 +59,9 @@ public class MainApp extends Application {
         appVersionPatch = properties.getInteger("version_patch");
     }
 
+    /**
+     * @return returns a formatted string of the current application version
+     */
     public static String getVersionString() {
         return appVersionMajor + "." + appVersionMinor + "." + appVersionRevision + "." + appVersionPatch;
     }

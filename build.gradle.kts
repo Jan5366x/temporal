@@ -22,14 +22,12 @@ allprojects {
     // os selector
     val currentOS = org.gradle.internal.os.OperatingSystem.current()
     var platform = ""
-    if (currentOS.isWindows()) {
-        platform = "win"
-    } else if (currentOS.isLinux()) {
-        platform = "linux"
-    } else if (currentOS.isMacOsX()) {
-        platform = "mac"
-    }
 
+    when {
+        currentOS.isWindows -> platform = "win"
+        currentOS.isLinux -> platform = "linux"
+        currentOS.isMacOsX -> platform = "mac"
+    }
 
     // version configuration
     extra.apply{
